@@ -1,0 +1,286 @@
+.include TSMC_180nm.txt
+
+.param LAMBDA=0.09u
+.param W=20*LAMBDA
+.param width_N=W
+.param width_P=2*W
+.global gnd vdd
+
+Vdd vdd gnd 1.8
+
+Vin_a0 a0 gnd PULSE(0 1.8 0.5ns 50ps 50ps 2ns 4ns 0)
+Vin_a1 a1 gnd PULSE(0 1.8 0.5ns 50ps 50ps 2ns 4ns 0)
+Vin_a2 a2 gnd PULSE(0 1.8 0.5ns 50ps 50ps 2ns 4ns 0)
+Vin_a3 a3 gnd PULSE(0 1.8 0.5ns 50ps 50ps 2ns 4ns 0)
+
+Vin_b0 b0 gnd PULSE(0 1.8 1ns 50ps 50ps 1ns 4ns 0)
+Vin_b1 b1 gnd PULSE(0 1.8 0.5ns 50ps 50ps 2ns 4ns 0)
+Vin_b2 b2 gnd PULSE(0 1.8 0.5ns 50ps 50ps 2ns 4ns 0)
+Vin_b3 b3 gnd PULSE(0 1.8 0.5ns 50ps 50ps 2ns 4ns 0)
+
+
+
+.subckt inv in out vdd gnd S=1
+.param Wp = {2*W}
+.param Wn = {W}
+
+M5 out in vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M6 out in gnd gnd CMOSN W={S*Wn} L={2*LAMBDA} 
++AS={S*5*Wn*LAMBDA} PS={10*LAMBDA+S*2*Wn} 
++AD={S*5*Wn*LAMBDA} PD={10*LAMBDA+S*2*Wn}
+.ends inv
+
+
+
+.subckt g_calc ai bi gi vdd gnd S=1 
+.param Wp = {2*W}
+.param Wn = {2*W}
+
+M1 gibar bi vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M2 gibar ai vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+
+M3 gibar bi gi_temp gnd CMOSN W={S*Wn} L={2*LAMBDA} 
++AS={S*5*Wn*LAMBDA} PS={10*LAMBDA+S*2*Wn} 
++AD={S*5*Wn*LAMBDA} PD={10*LAMBDA+S*2*Wn}
+M4 gi_temp ai gnd gnd CMOSN W={S*Wn} L={2*LAMBDA} 
++AS={S*5*Wn*LAMBDA} PS={10*LAMBDA+S*2*Wn} 
++AD={S*5*Wn*LAMBDA} PD={10*LAMBDA+S*2*Wn}
+
+x1 gibar gi vdd gnd inv S=2
+.ends g_calc
+
+
+
+.subckt pi_calc ai bi pi vdd gnd S=1 
+.param Wp = {2*W}
+.param Wn = {1*W}
+
+M7 pi_temp_1 ai vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M8 pi bi_bar pi_temp_1 vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M9 pi_temp_2 bi vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M10 pi ai_bar pi_temp_2 vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+
+M11 pi_temp_3 ai_bar gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M12 pi bi_bar pi_temp_3 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M13 pi_temp_4 ai gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M14 pi bi pi_temp_4 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+x1 ai ai_bar vdd gnd inv
+x2 bi bi_bar vdd gnd inv
+.ends pi_calc
+
+
+
+
+.subckt c2_calc p0 p1 g0 g1 c2 vdd gnd S=1 
+.param Wp = {4*W}
+.param Wn = {1*W}
+
+M19 c2_temp_1 g0 vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M20 c2_bar g1 c2_temp_1 vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M21 c2_temp_1 p1 vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+
+
+M22 c2_bar p1 c2_temp_2 gnd CMOSN W={2*S*Wn} L={2*LAMBDA} 
++AS={2*S*5*Wn*LAMBDA} PS={10*LAMBDA+2*S*2*Wn} 
++AD={2*S*5*Wn*LAMBDA} PD={10*LAMBDA+2*S*2*Wn}
+M23 c2_temp_2 g0 gnd gnd CMOSN W={2*S*Wn} L={2*LAMBDA} 
++AS={2*S*5*Wn*LAMBDA} PS={10*LAMBDA+2*S*2*Wn} 
++AD={2*S*5*Wn*LAMBDA} PD={10*LAMBDA+2*S*2*Wn}
+M24 c2_bar g1 gnd gnd CMOSN W={S*Wn} L={2*LAMBDA} 
++AS={S*5*Wn*LAMBDA} PS={10*LAMBDA+S*2*Wn} 
++AD={S*5*Wn*LAMBDA} PD={10*LAMBDA+S*2*Wn}
+
+
+x1 c2_bar c2 vdd gnd inv
+.ends c2_calc
+
+
+
+.subckt c3_calc p0 p1 p2 g0 g1 g2 c3 vdd gnd S=1 
+M27 c3_temp_1 g0 vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M28 c3_temp_2 g1 c3_temp_1 vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M29 c3_bar g2 c3_temp_2 vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M30 c3_temp_1 p1 vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M31 c3_temp_2 p2 vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+
+
+M32 c3_bar p2 c3_temp_3 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M33 c3_temp_3 p1 c3_temp_4 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M34 c3_temp_4 g0 gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M35 c3_temp_3 g1 gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M36 c3_bar g2 gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+
+x1 c3_bar c3 vdd gnd inv
+.ends c3_calc
+
+
+
+.subckt c4_calc p0 p1 p2 p3 g0 g1 g2 g3 c4 vdd gnd S=1 
+M39 c4_temp_1 g0 vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M40 c4_temp_2 g1 c4_temp_1 vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M41 c4_temp_3 g2 c4_temp_2 vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M42 c4_bar g3 c4_temp_3 vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M43 c4_temp_1 p1 vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M44 c4_temp_2 p2 vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M45 c4_temp_3 p3 vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+
+
+M46 c4_bar p3 c4_temp_4 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M47 c4_temp_4 p2 c4_temp_5 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M48 c4_temp_5 p1 c4_temp_6 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M49 c4_temp_6 g0 gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M50 c4_temp_5 g1 gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M51 c4_temp_4 g2 gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M52 c4_bar g3 gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+
+x1 c4_bar c4 vdd gnd inv
+.ends c4_calc
+
+
+.subckt load in vdd gnd
+M13 nc in vdd vdd CMOSP W={width_P} L={2*LAMBDA} 
++AS={5*width_P*LAMBDA} PS={10*LAMBDA+2*width_P} 
++AD={5*width_P*LAMBDA} PD={10*LAMBDA+2*width_P}
+M14 nc in gnd gnd CMOSN W={width_N} L={2*LAMBDA} 
++AS={5*width_N*LAMBDA} PS={10*LAMBDA+2*width_N} 
++AD={5*width_N*LAMBDA} PD={10*LAMBDA+2*width_N}
+M15 nc in vdd vdd CMOSP W={width_P} L={2*LAMBDA} 
++AS={5*width_P*LAMBDA} PS={10*LAMBDA+2*width_P} 
++AD={5*width_P*LAMBDA} PD={10*LAMBDA+2*width_P}
+M16 nc in gnd gnd CMOSN W={width_N} L={2*LAMBDA} 
++AS={5*width_N*LAMBDA} PS={10*LAMBDA+2*width_N} 
++AD={5*width_N*LAMBDA} PD={10*LAMBDA+2*width_N}
+.ends load
+
+
+x1 a0 b0 p0 vdd gnd pi_calc
+x2 a1 b1 p1 vdd gnd pi_calc
+x3 a2 b2 p2 vdd gnd pi_calc
+x4 a3 b3 p3 vdd gnd pi_calc
+
+x5 a0 b0 g0 vdd gnd g_calc
+x6 a1 b1 g1 vdd gnd g_calc
+x7 a2 b2 g2 vdd gnd g_calc
+x8 a3 b3 g3 vdd gnd g_calc
+
+x10 p0 p1 g0 g1 c2 vdd gnd c2_calc
+x11 p0 p1 p2 g0 g1 g2 c3 vdd gnd c3_calc
+x12 p0 p1 p2 p3 g0 g1 g2 g3 c4 vdd gnd c4_calc
+
+R1 p0 s0 0
+x13 g0 p1 s1 vdd gnd pi_calc
+x14 c2 p2 s2 vdd gnd pi_calc
+x15 c3 p3 s3 vdd gnd pi_calc
+
+x16 s0 vdd gnd load
+x17 s1 vdd gnd load
+x18 s2 vdd gnd load
+x19 s3 vdd gnd load
+
+x20 c4 vdd gnd load
+
+.tran 0.1ps 5ns
+
+.measure tran tplh_s1
++TRIG v(b0) VAL=0.9 RISE=1 
++TARG v(s1) VAL=0.9 RISE=1
+.measure tran tphl_s1
++TRIG v(b0) VAL=0.9 FALL=1 
++TARG v(s1) VAL=0.9 FALL=1
+.measure tran tp_s1 param = (tphl_s1 + tplh_s1)/2
+
+.control
+run
+set curplottitle="Hrishikesh-2024122006"
+*plot v(a0) 2+v(a1) 4+v(a2) 6+v(a3) 8+v(b0) 10+v(b1) 12+v(b2) 14+v(b3) 
+*plot v(s0) 2+v(s1) 4+v(s2) 6+v(s3) 8+v(c4)
+*plot v(g0) 2+v(c2) 4+v(c3) 6+v(c4)
+*plot @vdd[p]
+set hcopypscolor = 1
+
+*hardcopy q4.eps 
+.endc
+
+
+*tplh_s1             =  2.903586e-10 targ=  1.315359e-09 trig=  1.025000e-09
+*tphl_s1             =  2.754791e-10 targ=  2.350479e-09 trig=  2.075000e-09
+*tp_s1               =  2.82919e-10

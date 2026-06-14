@@ -1,0 +1,45 @@
+# --- Archives ---
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# --- NGSPICE run artifacts ---
+*.dat
+*.dpl
+b3v32check.log
+# keep meaningful timing logs out, but don't ignore source decks (*.cir)
+
+# --- MAGIC extraction intermediates ---
+# .mag (source) and .spice (extracted netlist) are tracked; .ext is regenerable
+*.ext
+*.sim
+*.nodes
+*.al
+
+# --- Icarus Verilog / simulation build artifacts ---
+# compiled vvp output (e.g. the "cla" binary), keep .vcd waveforms tracked
+a.out
+*.vvp
+*.out
+
+# --- LaTeX build artifacts (docs/report_source) ---
+*.aux
+*.log
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+.vscode/
+.idea/

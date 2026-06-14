@@ -1,0 +1,75 @@
+* SPICE3 file created from c3.ext - technology: scmos
+
+.option scale=0.09u
+
+M1000 c3 a_48_9# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=640 ps=272
+M1001 c3 a_48_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=400 ps=200
+M1002 a_48_9# p2 a_24_9# Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=220 ps=102
+M1003 gnd g1 a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1004 a_9_49# p1 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1005 gnd g2 a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1006 a_32_49# p2 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1007 a_32_49# g1 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1008 a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1009 vdd g0 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1010 a_48_9# g2 a_32_49# w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1011 a_24_9# p1 a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 p1 g0 0.20fF
+C1 inverter_0/w_0_n60# a_48_9# 0.09fF
+C2 a_48_9# g2 0.08fF
+C3 a_48_9# a_24_9# 0.28fF
+C4 g1 p1 0.20fF
+C5 vdd g0 0.13fF
+C6 vdd p1 0.13fF
+C7 a_9_49# g0 0.08fF
+C8 vdd c3 0.45fF
+C9 p2 a_32_49# 0.08fF
+C10 vdd a_32_49# 0.95fF
+C11 a_9_49# p1 0.08fF
+C12 vdd g1 0.13fF
+C13 a_9_49# a_32_49# 0.48fF
+C14 inverter_0/w_0_n60# c3 0.08fF
+C15 vdd p2 0.13fF
+C16 a_48_9# w_3_39# 0.08fF
+C17 a_24_9# a_32_49# 0.08fF
+C18 vdd a_9_49# 0.95fF
+C19 a_24_9# g1 0.08fF
+C20 a_48_9# gnd 0.35fF
+C21 inverter_0/w_0_n60# vdd 0.14fF
+C22 g2 p2 0.20fF
+C23 vdd g2 0.13fF
+C24 w_3_39# g0 0.12fF
+C25 a_24_9# a_9_49# 0.03fF
+C26 p1 w_3_39# 0.12fF
+C27 w_3_39# a_32_49# 0.13fF
+C28 g1 w_3_39# 0.12fF
+C29 gnd c3 0.24fF
+C30 a_24_9# a_16_9# 0.21fF
+C31 p2 w_3_39# 0.12fF
+C32 vdd w_3_39# 0.25fF
+C33 a_9_49# w_3_39# 0.12fF
+C34 g2 w_3_39# 0.12fF
+C35 a_24_9# gnd 0.53fF
+C36 a_16_9# gnd 0.24fF
+C37 a_48_9# c3 0.05fF
+C38 a_48_9# a_32_49# 0.51fF
+C39 a_48_9# vdd 0.03fF
+C40 a_24_9# Gnd 0.11fF
+C41 a_16_9# Gnd 0.01fF
+C42 gnd Gnd 0.51fF
+C43 w_3_39# Gnd 3.86fF
+C44 c3 Gnd 0.10fF
+C45 a_48_9# Gnd 0.26fF
+C46 inverter_0/w_0_n60# Gnd 1.51fF

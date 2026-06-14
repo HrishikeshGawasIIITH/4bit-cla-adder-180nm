@@ -1,0 +1,153 @@
+.include TSMC_180nm.txt
+
+.param LAMBDA=0.09u
+.param width_N=20*LAMBDA
+.param width_P=2*width_N
+.global gnd vdd
+
+Vdd vdd gnd 1.8
+
+Vin_a0 a0 gnd PULSE(1.8 0 0 50ps 50ps 1ns 2ns 0)
+Vin_a1 a1 gnd PULSE(1.8 0 0 50ps 50ps 2ns 4ns 0)
+
+Vin_b0 b0 gnd PULSE(1.8 0 0 50ps 50ps 4ns 8ns 0)
+Vin_b1 b1 gnd PULSE(1.8 0 0 50ps 50ps 8ns 16ns 0)
+
+.subckt inv in out vdd gnd S=1
+.param Wp = {2*W}
+.param Wn = {W}
+
+M5 out in vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M6 out in gnd gnd CMOSN W={S*Wn} L={2*LAMBDA} 
++AS={S*5*Wn*LAMBDA} PS={10*LAMBDA+S*2*Wn} 
++AD={S*5*Wn*LAMBDA} PD={10*LAMBDA+S*2*Wn}
+.ends inv
+
+
+
+.subckt g_calc ai bi gi vdd gnd S=1 
+.param Wp = {2*W}
+.param Wn = {2*W}
+
+M1 gibar bi vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M2 gibar ai vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+
+M3 gibar bi gi_temp gnd CMOSN W={S*Wn} L={2*LAMBDA} 
++AS={S*5*Wn*LAMBDA} PS={10*LAMBDA+S*2*Wn} 
++AD={S*5*Wn*LAMBDA} PD={10*LAMBDA+S*2*Wn}
+M4 gi_temp ai gnd gnd CMOSN W={S*Wn} L={2*LAMBDA} 
++AS={S*5*Wn*LAMBDA} PS={10*LAMBDA+S*2*Wn} 
++AD={S*5*Wn*LAMBDA} PD={10*LAMBDA+S*2*Wn}
+
+x1 gibar gi vdd gnd inv S=2
+.ends g_calc
+
+
+
+.subckt pi_calc ai bi pi vdd gnd S=1 
+.param Wp = {2*W}
+.param Wn = {1*W}
+
+M7 pi_temp_1 ai vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M8 pi bi_bar pi_temp_1 vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M9 pi_temp_2 bi vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M10 pi ai_bar pi_temp_2 vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+
+M11 pi_temp_3 ai_bar gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M12 pi bi_bar pi_temp_3 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M13 pi_temp_4 ai gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M14 pi bi pi_temp_4 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+x1 ai ai_bar vdd gnd inv
+x2 bi bi_bar vdd gnd inv
+.ends pi_calc
+
+
+
+
+.subckt c2_calc p1 g0 g1 c2 vdd gnd S=1 
+.param Wp = {2*W}
+.param Wn = {1*W}
+
+M19 c2_temp_1 g0 vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M20 c2_bar g1 c2_temp_1 vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+M21 c2_temp_1 p1 vdd vdd CMOSP W={S*Wp} L={2*LAMBDA} 
++AS={S*5*Wp*LAMBDA} PS={10*LAMBDA+S*2*Wp} 
++AD={S*5*Wp*LAMBDA} PD={10*LAMBDA+S*2*Wp}
+
+
+M22 c2_bar p1 c2_temp_2 gnd CMOSN W={2*S*Wn} L={2*LAMBDA} 
++AS={2*S*5*Wn*LAMBDA} PS={10*LAMBDA+2*S*2*Wn} 
++AD={2*S*5*Wn*LAMBDA} PD={10*LAMBDA+2*S*2*Wn}
+M23 c2_temp_2 g0 gnd gnd CMOSN W={2*S*Wn} L={2*LAMBDA} 
++AS={2*S*5*Wn*LAMBDA} PS={10*LAMBDA+2*S*2*Wn} 
++AD={2*S*5*Wn*LAMBDA} PD={10*LAMBDA+2*S*2*Wn}
+M24 c2_bar g1 gnd gnd CMOSN W={S*Wn} L={2*LAMBDA} 
++AS={S*5*Wn*LAMBDA} PS={10*LAMBDA+S*2*Wn} 
++AD={S*5*Wn*LAMBDA} PD={10*LAMBDA+S*2*Wn}
+
+
+x1 c2_bar c2 vdd gnd inv
+.ends c2_calc
+
+x1 a0 b0 p0 vdd gnd pi_calc
+x2 a1 b1 p1 vdd gnd pi_calc
+
+x3 a0 b0 g0 vdd gnd g_calc
+x4 a1 b1 g1 vdd gnd g_calc
+
+x5 p1 g0 g1 c2 vdd gnd c2_calc
+
+.tran 0.1ps 10ns
+
+.measure tran tplh_c2
++TRIG v(a0) VAL=0.9 RISE=1 
++TARG v(c2) VAL=0.9 RISE=1
+
+.measure tran tphl_c2
++TRIG v(a0) VAL=0.9 FALL=1 
++TARG v(c2) VAL=0.9 FALL=1
+
+.measure tran tp_c2 param = (tplh_c2 + tphl_c2)/2
+
+.measure tran rms_curr RMS i(vdd)
+.measure tran avg_power param = (rms_curr*1.8)
+
+.control
+run
+set curplottitle="Hrishikesh-2024122006-3_c2"
+plot v(a0) 2+v(a1) 4+v(g0) 
+.endc
+
+*Unloaded delay acheived
+*tplh_c2            =  1.026317e-10 targ=  2.127632e-09 trig=  2.025000e-09
+*tphl_c2            =  9.610765e-11 targ=  3.121108e-09 trig=  3.025000e-09
+*tp_c2              =  9.93697e-11
+*rms_curr            =   1.27865e-04 from=  0.00000e+00 to=  5.00000e-09
+*avg_power           =  2.30157e-04

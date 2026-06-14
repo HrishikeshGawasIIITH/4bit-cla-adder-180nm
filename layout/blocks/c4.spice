@@ -1,0 +1,98 @@
+* SPICE3 file created from c4.ext - technology: scmos
+
+.option scale=0.09u
+
+M1000 c4 a_72_9# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=840 ps=362
+M1001 c4 a_72_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=500 ps=250
+M1002 a_72_9# g3 a_56_49# w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=440 ps=182
+M1003 a_48_9# p2 a_24_9# Gnd CMOSN w=20 l=2
++  ad=220 pd=102 as=220 ps=102
+M1004 gnd g1 a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1005 a_9_49# p1 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1006 gnd g2 a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1007 a_32_49# p2 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1008 gnd g3 a_72_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1009 a_32_49# g1 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1010 a_56_49# p3 vdd w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1011 a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1012 vdd g0 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1013 a_56_49# g2 a_32_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1014 a_72_9# p3 a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1015 a_24_9# p1 a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 a_16_9# a_24_9# 0.21fF
+C1 p2 vdd 0.13fF
+C2 a_56_49# w_3_39# 0.13fF
+C3 a_72_9# a_48_9# 0.28fF
+C4 p1 vdd 0.13fF
+C5 a_56_49# a_48_9# 0.08fF
+C6 p1 g0 0.20fF
+C7 a_32_49# a_9_49# 0.48fF
+C8 inverter_0/w_0_n60# c4 0.08fF
+C9 g3 vdd 0.13fF
+C10 a_72_9# gnd 0.35fF
+C11 g1 w_3_39# 0.12fF
+C12 g0 vdd 0.13fF
+C13 a_24_9# g1 0.08fF
+C14 a_16_9# gnd 0.24fF
+C15 w_3_39# g2 0.12fF
+C16 a_72_9# vdd 0.03fF
+C17 w_3_39# a_9_49# 0.12fF
+C18 a_24_9# a_9_49# 0.03fF
+C19 a_72_9# g3 0.08fF
+C20 a_32_49# w_3_39# 0.13fF
+C21 a_56_49# vdd 0.95fF
+C22 a_24_9# a_32_49# 0.08fF
+C23 a_48_9# g2 0.08fF
+C24 p2 g2 0.20fF
+C25 a_32_49# a_48_9# 0.03fF
+C26 a_72_9# a_56_49# 0.51fF
+C27 w_3_39# p3 0.12fF
+C28 p1 g1 0.20fF
+C29 a_32_49# p2 0.08fF
+C30 p1 a_9_49# 0.08fF
+C31 inverter_0/w_0_n60# vdd 0.14fF
+C32 g1 vdd 0.13fF
+C33 a_24_9# a_48_9# 0.28fF
+C34 w_3_39# p2 0.12fF
+C35 g2 vdd 0.13fF
+C36 a_9_49# vdd 0.95fF
+C37 a_72_9# inverter_0/w_0_n60# 0.09fF
+C38 a_32_49# vdd 0.95fF
+C39 p1 w_3_39# 0.12fF
+C40 g0 a_9_49# 0.08fF
+C41 c4 gnd 0.24fF
+C42 p3 vdd 0.13fF
+C43 c4 vdd 0.45fF
+C44 a_24_9# gnd 0.53fF
+C45 w_3_39# vdd 0.37fF
+C46 a_32_49# a_56_49# 0.48fF
+C47 p3 g3 0.20fF
+C48 w_3_39# g3 0.12fF
+C49 a_48_9# gnd 0.53fF
+C50 a_72_9# c4 0.05fF
+C51 w_3_39# g0 0.12fF
+C52 a_72_9# w_3_39# 0.08fF
+C53 a_56_49# p3 0.08fF
+C54 a_48_9# Gnd 0.11fF
+C55 a_24_9# Gnd 0.11fF
+C56 a_16_9# Gnd 0.01fF
+C57 gnd Gnd 0.62fF
+C58 w_3_39# Gnd 5.30fF
+C59 c4 Gnd 0.11fF
+C60 a_72_9# Gnd 0.25fF
+C61 inverter_0/w_0_n60# Gnd 1.51fF

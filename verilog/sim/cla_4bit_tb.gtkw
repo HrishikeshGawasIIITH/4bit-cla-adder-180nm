@@ -1,0 +1,51 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Wed Nov 20 12:08:37 2024
+[*]
+[dumpfile] "/home/hrishikesh/course_project/verilog/cla_4bit_tb.vcd"
+[dumpfile_mtime] "Wed Nov 20 12:04:01 2024"
+[dumpfile_size] 41652
+[savefile] "/home/hrishikesh/course_project/verilog/cla_4bit_tb.gtkw"
+[timestart] 0
+[size] 2548 1407
+[pos] 32767 32767
+*-17.844601 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 214
+[signals_width] 170
+[sst_expanded] 1
+[sst_vpaned_height] 435
+@29
+cla_4bit_tb.clk
+@28
+cla_4bit_tb.reset
+@800022
+cla_4bit_tb.B[3:0]
+@28
+(0)cla_4bit_tb.B[3:0]
+(1)cla_4bit_tb.B[3:0]
+(2)cla_4bit_tb.B[3:0]
+(3)cla_4bit_tb.B[3:0]
+@1001200
+-group_end
+@800022
+cla_4bit_tb.A[3:0]
+@28
+(0)cla_4bit_tb.A[3:0]
+(1)cla_4bit_tb.A[3:0]
+(2)cla_4bit_tb.A[3:0]
+(3)cla_4bit_tb.A[3:0]
+@1001200
+-group_end
+@28
+cla_4bit_tb.Cout
+@800022
+cla_4bit_tb.Sum[3:0]
+@28
+(0)cla_4bit_tb.Sum[3:0]
+(1)cla_4bit_tb.Sum[3:0]
+(2)cla_4bit_tb.Sum[3:0]
+(3)cla_4bit_tb.Sum[3:0]
+@1001200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0

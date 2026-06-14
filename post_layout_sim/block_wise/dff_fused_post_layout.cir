@@ -1,0 +1,134 @@
+.include TSMC_180nm.txt
+
+.param LAMBDA=0.09u
+.param width_N=20*LAMBDA
+.param width_P=2*width_N
+.global gnd vdd
+.option scale=0.09u
+
+.param t_setup_hl=(3-0.024)*1e-09
+.param t_setup_lh=(5+0.024)*1e-09 
+*tsthl - tphl increases a lot; tstlh- voltage drop at ouput after this
+
+.param t_hold_hl=(3+0.033)*1e-09
+.param t_hold_lh=(5-0.02)*1e-09 
+*thhl- tphl increases a lot
+
+Vdd vdd gnd 1.8
+Vin_A A gnd pwl(0 0V 0.5ns 0V 0.5ns 1.8V 2ns 1.8V 2ns 0V 4ns 0V 4ns 1.8V)
+Vin_C C gnd pwl(0 0V 0.5ns 0V 0.5ns 1.8V {t_setup_hl} 1.8V {t_setup_hl} 0V {t_setup_lh} 0V {t_setup_lh} 1.8V)
+Vin_E E gnd pwl(0 0V 0.5ns 0V 0.5ns 1.8V 2ns 1.8V 2ns 0V {t_hold_hl} 0V {t_hold_hl} 1.8V {t_hold_lh} 1.8V {t_hold_lh} 0V)
+Vin_clk_50 clk_50 gnd PULSE(1.8 0 0 50ps 50ps 1ns 2ns 0)
+Vin_clk_0 clk_0 gnd PULSE(1.8 0 0 0ps 0ps 1ns 2ns 0)
+
+.subckt dff in out clk vdd gnd S=1 
+M1000 out a_64_49# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=800 ps=360
+M1001 out a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=400 ps=200
+M1002 gnd clk a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1003 a_64_49# a_33_9# vdd w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1004 a_16_9# clk a_16_49# w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1005 vdd clk a_33_9# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1006 a_64_9# a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1007 a_16_9# in gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1008 a_16_49# in vdd w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1009 a_40_9# a_16_9# a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1010 a_64_49# clk a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+C0 clk vdd 0.13fF
+C1 a_33_9# w_3_39# 0.21fF
+C2 a_16_9# w_3_39# 0.14fF
+C3 a_33_9# a_16_9# 0.17fF
+C4 in vdd 0.13fF
+C5 clk w_3_39# 0.30fF
+C6 a_33_9# clk 0.11fF
+C7 gnd a_64_49# 0.09fF
+C8 a_16_9# clk 0.05fF
+C9 gnd out 0.24fF
+C10 vdd a_64_49# 0.45fF
+C11 in w_3_39# 0.12fF
+C12 inverter_0/w_0_n60# vdd 0.14fF
+C13 out vdd 0.45fF
+C14 a_33_9# gnd 0.03fF
+C15 vdd w_3_39# 0.39fF
+C16 a_33_9# vdd 0.45fF
+C17 gnd a_16_9# 0.24fF
+C18 inverter_0/w_0_n60# a_64_49# 0.09fF
+C19 out a_64_49# 0.05fF
+C20 a_16_9# vdd 0.03fF
+C21 in clk 0.12fF
+C22 inverter_0/w_0_n60# out 0.08fF
+C23 a_64_49# w_3_39# 0.08fF
+C24 gnd clk 0.39fF
+C25 gnd Gnd 0.53fF
+C26 a_16_9# Gnd 0.20fF
+C27 a_33_9# Gnd 0.18fF
+C28 w_3_39# Gnd 4.34fF
+C29 out Gnd 0.10fF
+C30 a_64_49# Gnd 0.25fF
+C31 inverter_0/w_0_n60# Gnd 1.51fF
+.ends dff
+
+.subckt inv in out vdd gnd S=1
+M1000 out in vdd w_0_n60# CMOSP w=50 l=2
++  ad=250 pd=110 as=250 ps=110
+M1001 out in gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=100 ps=50
+C0 gnd out 0.24fF
+C1 out w_0_n60# 0.09fF
+C2 vdd w_0_n60# 0.15fF
+C3 gnd in 0.05fF
+C4 in w_0_n60# 0.09fF
+C5 out vdd 0.55fF
+C6 out in 0.05fF
+C7 gnd Gnd 0.15fF
+C8 out Gnd 0.08fF
+C9 vdd Gnd 0.03fF
+C10 in Gnd 0.15fF
+C11 w_0_n60# Gnd 1.76fF
+.ends inv
+
+x1 A B clk_50 vdd gnd dff
+x2 B nc1 vdd gnd inv
+
+x3 C D clk_0 vdd gnd dff
+x4 D nc2 vdd gnd inv
+
+x5 E F clk_0 vdd gnd dff
+x6 F nc3 vdd gnd inv
+
+.tran 0.1ps 8ns
+
+.measure tran tpcq_lh
++TRIG v(clk_50) VAL=0.9 RISE=3 
++TARG v(B) VAL=0.9 RISE=2
+.measure tran tpcq_hl
++TRIG v(clk_50) VAL=0.9 RISE=2 
++TARG v(B) VAL=0.9 FALL=1
+.measure tran tpcq param = (tpcq_hl + tpcq_lh)/2
+
+.control
+run
+set curplottitle="Hrishikesh-2024122006"
+*plot v(A) 2+v(B) 4+v(clk_50)
+*plot v(C) 2+v(D) 4+v(clk_0)
+plot v(E) 2+v(F) 4+v(clk_0)
+set hcopypscolor = 1
+
+.endc
+
+*tpcq_lh             =  1.002930e-10 targ=  5.175293e-09 trig=  5.075000e-09
+*tpcq_hl             =  1.513846e-10 targ=  3.226385e-09 trig=  3.075000e-09
+*tpcq                =  1.25839e-10
+
+*thold - 32ps
+*tsetup - 24ps

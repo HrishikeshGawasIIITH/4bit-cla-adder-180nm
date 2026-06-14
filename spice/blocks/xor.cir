@@ -1,0 +1,83 @@
+.include TSMC_180nm.txt
+
+.param LAMBDA=0.09u
+.param width_N=20*LAMBDA
+.param width_P=2*width_N
+.global gnd vdd
+
+Vdd vdd gnd 1.8
+
+Vin_a0 a0 gnd pwl(0 0V 2ns 0V 2.05ns 1.8V 3ns 1.8V 3.05ns 0V)
+Vin_a1 a1 gnd 0V
+
+.subckt pi_calc ai bi pi vdd gnd S=1 
+M7 pi_temp_1 ai vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M8 pi bi_bar pi_temp_1 vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M9 pi_temp_2 bi vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M10 pi ai_bar pi_temp_2 vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+
+M11 pi_temp_3 ai_bar gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M12 pi bi_bar pi_temp_3 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M13 pi_temp_4 ai gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M14 pi bi pi_temp_4 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+M15 ai_bar ai vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M16 ai_bar ai gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+M17 bi_bar bi vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M18 bi_bar bi gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+.ends pi_calc
+
+x1 a0 a1 g0 vdd gnd pi_calc
+
+.tran 0.1ps 5ns
+
+.measure tran tplh_xor
++TRIG v(a0) VAL=0.9 RISE=1 
++TARG v(g0) VAL=0.9 RISE=1
+
+.measure tran tphl_xor
++TRIG v(a0) VAL=0.9 FALL=1 
++TARG v(g0) VAL=0.9 FALL=1
+
+.measure tran tp_xor param = (tplh_xor + tphl_xor)/2
+
+.measure tran rms_curr RMS i(vdd)
+.measure tran avg_power param = (rms_curr*1.8)
+
+.control
+run
+set curplottitle="Hrishikesh-2024122006-3_xor"
+plot v(a0) 2+v(a1) 4+v(g0) 
+.endc
+
+*Unloaded delay acheived
+*tplh_xor            =  1.040566e-10 targ=  2.129057e-09 trig=  2.025000e-09
+*tphl_xor            =  9.203543e-11 targ=  3.117035e-09 trig=  3.025000e-09
+*tp_xor              =  9.80460e-11
+*rms_curr            =   1.08238e-04 from=  0.00000e+00 to=  5.00000e-09
+*avg_power           =  1.94829e-04

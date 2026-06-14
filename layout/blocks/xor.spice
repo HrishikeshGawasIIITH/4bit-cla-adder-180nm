@@ -1,0 +1,61 @@
+* SPICE3 file created from xor.ext - technology: scmos
+
+.option scale=0.09u
+
+M1000 a_32_9# a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=400 ps=200
+M1001 pi bi a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1002 vdd bi a_36_6# w_3_39# CMOSP w=40 l=2
++  ad=800 pd=360 as=200 ps=90
+M1003 a_54_9# ai gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1004 a_54_49# ai vdd w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1005 pi a_36_6# a_54_49# w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1006 a_32_49# a_16_9# vdd w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1007 a_16_9# ai gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1008 gnd bi a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1009 pi bi a_32_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1010 a_16_9# ai vdd w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1011 pi a_36_6# a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 w_3_39# bi 0.22fF
+C1 a_16_9# pi 0.03fF
+C2 bi a_36_6# 0.23fF
+C3 ai a_16_9# 0.07fF
+C4 bi gnd 0.05fF
+C5 w_3_39# a_16_9# 0.16fF
+C6 vdd pi 0.50fF
+C7 a_16_9# a_36_6# 0.07fF
+C8 w_3_39# vdd 0.47fF
+C9 a_16_9# gnd 0.50fF
+C10 ai pi 0.08fF
+C11 vdd a_36_6# 0.64fF
+C12 w_3_39# pi 0.33fF
+C13 w_3_39# ai 0.18fF
+C14 a_36_6# pi 1.37fF
+C15 ai a_36_6# 0.16fF
+C16 gnd pi 0.27fF
+C17 ai gnd 0.63fF
+C18 w_3_39# a_36_6# 0.66fF
+C19 a_36_6# gnd 0.24fF
+C20 bi a_16_9# 0.04fF
+C21 vdd bi 0.15fF
+C22 bi pi 0.09fF
+C23 bi ai 0.03fF
+C24 vdd a_16_9# 0.86fF
+C25 gnd Gnd 0.42fF
+C26 pi Gnd 0.31fF
+C27 vdd Gnd 0.03fF
+C28 a_36_6# Gnd 0.22fF
+C29 a_16_9# Gnd 0.19fF
+C30 ai Gnd 0.51fF
+C31 bi Gnd 0.00fF
+C32 w_3_39# Gnd 4.98fF

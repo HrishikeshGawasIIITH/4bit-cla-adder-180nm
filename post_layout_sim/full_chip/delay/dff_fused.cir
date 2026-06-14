@@ -1,0 +1,101 @@
+.include TSMC_180nm.txt
+
+.param LAMBDA=0.09u
+.param width_N=20*LAMBDA
+.param width_P=2*width_N
+.global gnd vdd
+
+.param t_setup_hl=(3-0.033)*1e-09
+.param t_setup_lh=(5+0.022)*1e-09 
+*tsthl - tphl increases a lot; tstlh- voltage drop at ouput after this
+
+.param t_hold_hl=(3+0.032)*1e-09
+.param t_hold_lh=(5-0.03)*1e-09 
+*thhl- tphl increases a lot
+
+Vdd vdd gnd 1.8
+Vin_A A gnd pwl(0 0V 0.5ns 0V 0.5ns 1.8V 2ns 1.8V 2ns 0V 4ns 0V 4ns 1.8V)
+Vin_C C gnd pwl(0 0V 0.5ns 0V 0.5ns 1.8V {t_setup_hl} 1.8V {t_setup_hl} 0V {t_setup_lh} 0V {t_setup_lh} 1.8V)
+Vin_E E gnd pwl(0 0V 0.5ns 0V 0.5ns 1.8V 2ns 1.8V 2ns 0V {t_hold_hl} 0V {t_hold_hl} 1.8V {t_hold_lh} 1.8V {t_hold_lh} 0V)
+Vin_clk_50 clk_50 gnd PULSE(1.8 0 0 50ps 50ps 1ns 2ns 0)
+Vin_clk_0 clk_0 gnd PULSE(1.8 0 0 0ps 0ps 1ns 2ns 0)
+
+.subckt dff in out clk vdd gnd S=1 
+M1 temp1 in vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M2 temp2 clk temp1 vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M3 temp2 in gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+M4 temp3 clk vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M5 temp3 temp2 temp4 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M6 temp4 clk gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+M7 out_bar temp3 vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M8 out_bar clk temp5 gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M9 temp5 temp3 gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+M10 out out_bar vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M11 out out_bar gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+.ends dff
+
+.subckt load in vdd gnd
+M1 nc in vdd vdd CMOSP W={width_P} L={2*LAMBDA} 
++AS={5*width_P*LAMBDA} PS={10*LAMBDA+2*width_P} 
++AD={5*width_P*LAMBDA} PD={10*LAMBDA+2*width_P}
+M2 nc in gnd gnd CMOSN W={width_N} L={2*LAMBDA} 
++AS={5*width_N*LAMBDA} PS={10*LAMBDA+2*width_N} 
++AD={5*width_N*LAMBDA} PD={10*LAMBDA+2*width_N}
+.ends load
+
+x1 A B clk_50 vdd gnd dff
+x2 B vdd gnd load
+
+x3 C D clk_0 vdd gnd dff
+x4 D vdd gnd load
+
+x5 E F clk_0 vdd gnd dff
+x6 F vdd gnd load
+
+.tran 0.1ps 6ns
+
+.measure tran tpcq_lh
++TRIG v(clk_50) VAL=0.9 RISE=3 
++TARG v(B) VAL=0.9 RISE=2
+.measure tran tpcq_hl
++TRIG v(clk_50) VAL=0.9 RISE=2 
++TARG v(B) VAL=0.9 FALL=1
+.measure tran tpcq param = (tpcq_hl + tpcq_lh)/2
+
+.control
+run
+set curplottitle="Hrishikesh-2024122006"
+*plot v(A) 2+v(B) 4+v(clk_50)
+*plot v(C) 2+v(D) 4+v(clk_0)
+*plot v(E) 2+v(F) 4+v(clk_0)
+set hcopypscolor = 1
+
+.endc
+
+*thold - 32ps
+*tsetup - 33ps

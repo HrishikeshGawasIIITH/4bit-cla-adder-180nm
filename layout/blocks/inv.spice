@@ -1,0 +1,20 @@
+* SPICE3 file created from inv.ext - technology: scmos
+
+.option scale=0.09u
+
+M1000 out in vdd w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=200 ps=90
+M1001 out in gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=100 ps=50
+C0 out w_0_n60# 0.08fF
+C1 out gnd 0.24fF
+C2 in w_0_n60# 0.09fF
+C3 in gnd 0.05fF
+C4 out in 0.05fF
+C5 vdd w_0_n60# 0.14fF
+C6 vdd out 0.45fF
+C7 gnd Gnd 0.15fF
+C8 out Gnd 0.09fF
+C9 vdd Gnd 0.03fF
+C10 in Gnd 0.16fF
+C11 w_0_n60# Gnd 1.48fF

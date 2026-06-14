@@ -1,0 +1,1535 @@
+.include TSMC_180nm.txt
+
+.param LAMBDA=0.09u
+.param W=20*LAMBDA
+.param width_N=W
+.param width_P=2*W
+.global gnd vdd
+.option scale=0.09u
+
+Vdd vdd gnd 1.8
+
+Vin_a0 a0 gnd PULSE(0 1.8 0.5ns 50ps 50ps 1ns 2ns 0)
+Vin_a1 a1 gnd PULSE(0 1.8 0.5ns 50ps 50ps 1ns 2ns 0)
+Vin_a2 a2 gnd PULSE(0 1.8 0.5ns 50ps 50ps 1ns 2ns 0)
+Vin_a3 a3 gnd PULSE(0 1.8 0.5ns 50ps 50ps 1ns 2ns 0)
+
+Vin_b0 b0 gnd PULSE(0 1.8 2.5ns 50ps 50ps 1ns 2ns 0)
+Vin_b1 b1 gnd PULSE(0 1.8 0.5ns 50ps 50ps 1ns 2ns 0)
+Vin_b2 b2 gnd PULSE(0 1.8 0.5ns 50ps 50ps 1ns 2ns 0)
+Vin_b3 b3 gnd PULSE(0 1.8 0.5ns 50ps 50ps 1ns 2ns 0)
+
+
+M1000 c4 c4_0/a_72_9# vdd c4_0/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=21320 ps=9546
+M1001 c4 c4_0/a_72_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=10900 ps=5410
+M1002 c4_0/a_72_9# g3 c4_0/a_56_49# c4_0/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=440 ps=182
+M1003 c4_0/a_48_9# p2 c4_0/a_24_9# Gnd CMOSN w=20 l=2
++  ad=220 pd=102 as=220 ps=102
+M1004 gnd g1 c4_0/a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1005 c4_0/a_9_49# p1 vdd c4_0/w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1006 gnd g2 c4_0/a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1007 c4_0/a_32_49# p2 vdd c4_0/w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1008 gnd g3 c4_0/a_72_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1009 c4_0/a_32_49# g1 c4_0/a_9_49# c4_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1010 c4_0/a_56_49# p3 vdd c4_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1011 c4_0/a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1012 vdd g0 c4_0/a_9_49# c4_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1013 c4_0/a_56_49# g2 c4_0/a_32_49# c4_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1014 c4_0/a_72_9# p3 c4_0/a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1015 c4_0/a_24_9# p1 c4_0/a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1016 c2 c2_0/a_24_9# vdd c2_0/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1017 c2 c2_0/a_24_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1018 gnd g1 c2_0/a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1019 c2_0/a_9_49# p1 vdd c2_0/w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1020 c2_0/a_24_9# g1 c2_0/a_9_49# c2_0/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1021 c2_0/a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1022 vdd g0 c2_0/a_9_49# c2_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1023 c2_0/a_24_9# p1 c2_0/a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1024 a0 dff_0/a_64_49# vdd dff_0/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1025 a0 dff_0/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1026 gnd clk dff_0/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1027 dff_0/a_64_49# dff_0/a_33_9# vdd dff_0/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1028 dff_0/a_16_9# clk dff_0/a_16_49# dff_0/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1029 vdd clk dff_0/a_33_9# dff_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1030 dff_0/a_64_9# dff_0/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1031 dff_0/a_16_9# a0_unsync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1032 dff_0/a_16_49# a0_unsync vdd dff_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1033 dff_0/a_40_9# dff_0/a_16_9# dff_0/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1034 dff_0/a_64_49# clk dff_0/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1035 b0 dff_1/a_64_49# vdd dff_1/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1036 b0 dff_1/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1037 gnd clk dff_1/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1038 dff_1/a_64_49# dff_1/a_33_9# vdd dff_1/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1039 dff_1/a_16_9# clk dff_1/a_16_49# dff_1/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1040 vdd clk dff_1/a_33_9# dff_1/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1041 dff_1/a_64_9# dff_1/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1042 dff_1/a_16_9# b0_unsync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1043 dff_1/a_16_49# b0_unsync vdd dff_1/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1044 dff_1/a_40_9# dff_1/a_16_9# dff_1/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1045 dff_1/a_64_49# clk dff_1/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1046 a1 dff_2/a_64_49# vdd dff_2/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1047 a1 dff_2/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1048 gnd clk dff_2/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1049 dff_2/a_64_49# dff_2/a_33_9# vdd dff_2/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1050 dff_2/a_16_9# clk dff_2/a_16_49# dff_2/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1051 vdd clk dff_2/a_33_9# dff_2/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1052 dff_2/a_64_9# dff_2/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1053 dff_2/a_16_9# a1_unsync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1054 dff_2/a_16_49# a1_unsync vdd dff_2/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1055 dff_2/a_40_9# dff_2/a_16_9# dff_2/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1056 dff_2/a_64_49# clk dff_2/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1057 b1 dff_3/a_64_49# vdd dff_3/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1058 b1 dff_3/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1059 gnd clk dff_3/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1060 dff_3/a_64_49# dff_3/a_33_9# vdd dff_3/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1061 dff_3/a_16_9# clk dff_3/a_16_49# dff_3/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1062 vdd clk dff_3/a_33_9# dff_3/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1063 dff_3/a_64_9# dff_3/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1064 dff_3/a_16_9# b1_unsync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1065 dff_3/a_16_49# b1_unsync vdd dff_3/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1066 dff_3/a_40_9# dff_3/a_16_9# dff_3/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1067 dff_3/a_64_49# clk dff_3/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1068 b2 dff_5/a_64_49# vdd dff_5/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1069 b2 dff_5/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1070 gnd clk dff_5/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1071 dff_5/a_64_49# dff_5/a_33_9# vdd dff_5/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1072 dff_5/a_16_9# clk dff_5/a_16_49# dff_5/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1073 vdd clk dff_5/a_33_9# dff_5/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1074 dff_5/a_64_9# dff_5/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1075 dff_5/a_16_9# b2_unsync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1076 dff_5/a_16_49# b2_unsync vdd dff_5/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1077 dff_5/a_40_9# dff_5/a_16_9# dff_5/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1078 dff_5/a_64_49# clk dff_5/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1079 a2 dff_4/a_64_49# vdd dff_4/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1080 a2 dff_4/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1081 gnd clk dff_4/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1082 dff_4/a_64_49# dff_4/a_33_9# vdd dff_4/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1083 dff_4/a_16_9# clk dff_4/a_16_49# dff_4/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1084 vdd clk dff_4/a_33_9# dff_4/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1085 dff_4/a_64_9# dff_4/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1086 dff_4/a_16_9# a2_unsync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1087 dff_4/a_16_49# a2_unsync vdd dff_4/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1088 dff_4/a_40_9# dff_4/a_16_9# dff_4/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1089 dff_4/a_64_49# clk dff_4/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1090 a3 dff_6/a_64_49# vdd dff_6/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1091 a3 dff_6/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1092 gnd clk dff_6/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1093 dff_6/a_64_49# dff_6/a_33_9# vdd dff_6/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1094 dff_6/a_16_9# clk dff_6/a_16_49# dff_6/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1095 vdd clk dff_6/a_33_9# dff_6/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1096 dff_6/a_64_9# dff_6/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1097 dff_6/a_16_9# a3_unsync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1098 dff_6/a_16_49# a3_unsync vdd dff_6/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1099 dff_6/a_40_9# dff_6/a_16_9# dff_6/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1100 dff_6/a_64_49# clk dff_6/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1101 b3 dff_7/a_64_49# vdd dff_7/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1102 b3 dff_7/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1103 gnd clk dff_7/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1104 dff_7/a_64_49# dff_7/a_33_9# vdd dff_7/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1105 dff_7/a_16_9# clk dff_7/a_16_49# dff_7/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1106 vdd clk dff_7/a_33_9# dff_7/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1107 dff_7/a_64_9# dff_7/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1108 dff_7/a_16_9# b3_unsync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1109 dff_7/a_16_49# b3_unsync vdd dff_7/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1110 dff_7/a_40_9# dff_7/a_16_9# dff_7/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1111 dff_7/a_64_49# clk dff_7/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1112 s0_sync dff_8/a_64_49# vdd dff_8/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1113 s0_sync dff_8/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1114 gnd clk dff_8/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1115 dff_8/a_64_49# dff_8/a_33_9# vdd dff_8/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1116 dff_8/a_16_9# clk dff_8/a_16_49# dff_8/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1117 vdd clk dff_8/a_33_9# dff_8/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1118 dff_8/a_64_9# dff_8/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1119 dff_8/a_16_9# s0 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1120 dff_8/a_16_49# s0 vdd dff_8/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1121 dff_8/a_40_9# dff_8/a_16_9# dff_8/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1122 dff_8/a_64_49# clk dff_8/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1123 s1_sync dff_9/a_64_49# vdd dff_9/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1124 s1_sync dff_9/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1125 gnd clk dff_9/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1126 dff_9/a_64_49# dff_9/a_33_9# vdd dff_9/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1127 dff_9/a_16_9# clk dff_9/a_16_49# dff_9/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1128 vdd clk dff_9/a_33_9# dff_9/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1129 dff_9/a_64_9# dff_9/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1130 dff_9/a_16_9# s1 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1131 dff_9/a_16_49# s1 vdd dff_9/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1132 dff_9/a_40_9# dff_9/a_16_9# dff_9/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1133 dff_9/a_64_49# clk dff_9/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1134 xor_0/a_32_9# xor_0/a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=0 ps=0
+M1135 s0 b0 xor_0/a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1136 vdd b0 xor_0/a_36_6# xor_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1137 xor_0/a_54_9# a0 gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1138 xor_0/a_54_49# a0 vdd xor_0/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1139 s0 xor_0/a_36_6# xor_0/a_54_49# xor_0/w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1140 xor_0/a_32_49# xor_0/a_16_9# vdd xor_0/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1141 xor_0/a_16_9# a0 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1142 gnd b0 xor_0/a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1143 s0 b0 xor_0/a_32_49# xor_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1144 xor_0/a_16_9# a0 vdd xor_0/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1145 s0 xor_0/a_36_6# xor_0/a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1146 c3 c3_0/a_48_9# vdd c3_0/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1147 c3 c3_0/a_48_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1148 c3_0/a_48_9# p2 c3_0/a_24_9# Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=220 ps=102
+M1149 gnd g1 c3_0/a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1150 c3_0/a_9_49# p1 vdd c3_0/w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1151 gnd g2 c3_0/a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1152 c3_0/a_32_49# p2 vdd c3_0/w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1153 c3_0/a_32_49# g1 c3_0/a_9_49# c3_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1154 c3_0/a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1155 vdd g0 c3_0/a_9_49# c3_0/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1156 c3_0/a_48_9# g2 c3_0/a_32_49# c3_0/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1157 c3_0/a_24_9# p1 c3_0/a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1158 xor_1/a_32_9# xor_1/a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=0 ps=0
+M1159 p1 b1 xor_1/a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1160 vdd b1 xor_1/a_36_6# xor_1/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1161 xor_1/a_54_9# a1 gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1162 xor_1/a_54_49# a1 vdd xor_1/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1163 p1 xor_1/a_36_6# xor_1/a_54_49# xor_1/w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1164 xor_1/a_32_49# xor_1/a_16_9# vdd xor_1/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1165 xor_1/a_16_9# a1 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1166 gnd b1 xor_1/a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1167 p1 b1 xor_1/a_32_49# xor_1/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1168 xor_1/a_16_9# a1 vdd xor_1/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1169 p1 xor_1/a_36_6# xor_1/a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1170 xor_2/a_32_9# xor_2/a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=0 ps=0
+M1171 p2 b2 xor_2/a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1172 vdd b2 xor_2/a_36_6# xor_2/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1173 xor_2/a_54_9# a2 gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1174 xor_2/a_54_49# a2 vdd xor_2/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1175 p2 xor_2/a_36_6# xor_2/a_54_49# xor_2/w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1176 xor_2/a_32_49# xor_2/a_16_9# vdd xor_2/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1177 xor_2/a_16_9# a2 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1178 gnd b2 xor_2/a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1179 p2 b2 xor_2/a_32_49# xor_2/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1180 xor_2/a_16_9# a2 vdd xor_2/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1181 p2 xor_2/a_36_6# xor_2/a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1182 xor_3/a_32_9# xor_3/a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=0 ps=0
+M1183 p3 b3 xor_3/a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1184 vdd b3 xor_3/a_36_6# xor_3/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1185 xor_3/a_54_9# a3 gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1186 xor_3/a_54_49# a3 vdd xor_3/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1187 p3 xor_3/a_36_6# xor_3/a_54_49# xor_3/w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1188 xor_3/a_32_49# xor_3/a_16_9# vdd xor_3/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1189 xor_3/a_16_9# a3 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1190 gnd b3 xor_3/a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1191 p3 b3 xor_3/a_32_49# xor_3/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1192 xor_3/a_16_9# a3 vdd xor_3/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1193 p3 xor_3/a_36_6# xor_3/a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1194 inv_0/a_13_n90# s0_sync vdd inv_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1195 inv_0/a_13_n90# s0_sync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1196 inv_1/a_13_n90# s1_sync vdd inv_1/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1197 inv_1/a_13_n90# s1_sync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1198 xor_4/a_32_9# xor_4/a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=0 ps=0
+M1199 s2 p2 xor_4/a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1200 vdd p2 xor_4/a_36_6# xor_4/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1201 xor_4/a_54_9# c2 gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1202 xor_4/a_54_49# c2 vdd xor_4/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1203 s2 xor_4/a_36_6# xor_4/a_54_49# xor_4/w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1204 xor_4/a_32_49# xor_4/a_16_9# vdd xor_4/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1205 xor_4/a_16_9# c2 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1206 gnd p2 xor_4/a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1207 s2 p2 xor_4/a_32_49# xor_4/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1208 xor_4/a_16_9# c2 vdd xor_4/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1209 s2 xor_4/a_36_6# xor_4/a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1210 inv_2/a_13_n90# s2_sync vdd inv_2/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1211 inv_2/a_13_n90# s2_sync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1212 xor_5/a_32_9# xor_5/a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=0 ps=0
+M1213 s1 p1 xor_5/a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1214 vdd p1 xor_5/a_36_6# xor_5/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1215 xor_5/a_54_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1216 xor_5/a_54_49# g0 vdd xor_5/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1217 s1 xor_5/a_36_6# xor_5/a_54_49# xor_5/w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1218 xor_5/a_32_49# xor_5/a_16_9# vdd xor_5/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1219 xor_5/a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1220 gnd p1 xor_5/a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1221 s1 p1 xor_5/a_32_49# xor_5/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1222 xor_5/a_16_9# g0 vdd xor_5/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1223 s1 xor_5/a_36_6# xor_5/a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1224 inv_3/a_13_n90# s3_sync vdd inv_3/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1225 inv_3/a_13_n90# s3_sync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1226 xor_6/a_32_9# xor_6/a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=0 ps=0
+M1227 s3 p3 xor_6/a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1228 vdd p3 xor_6/a_36_6# xor_6/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1229 xor_6/a_54_9# c3 gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1230 xor_6/a_54_49# c3 vdd xor_6/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1231 s3 xor_6/a_36_6# xor_6/a_54_49# xor_6/w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1232 xor_6/a_32_49# xor_6/a_16_9# vdd xor_6/w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1233 xor_6/a_16_9# c3 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1234 gnd p3 xor_6/a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1235 s3 p3 xor_6/a_32_49# xor_6/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1236 xor_6/a_16_9# c3 vdd xor_6/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1237 s3 xor_6/a_36_6# xor_6/a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1238 inv_4/a_13_n90# c4_sync vdd inv_4/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1239 inv_4/a_13_n90# c4_sync gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1240 s2_sync dff_10/a_64_49# vdd dff_10/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1241 s2_sync dff_10/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1242 gnd clk dff_10/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1243 dff_10/a_64_49# dff_10/a_33_9# vdd dff_10/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1244 dff_10/a_16_9# clk dff_10/a_16_49# dff_10/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1245 vdd clk dff_10/a_33_9# dff_10/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1246 dff_10/a_64_9# dff_10/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1247 dff_10/a_16_9# s2 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1248 dff_10/a_16_49# s2 vdd dff_10/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1249 dff_10/a_40_9# dff_10/a_16_9# dff_10/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1250 dff_10/a_64_49# clk dff_10/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1251 c4_sync dff_12/a_64_49# vdd dff_12/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1252 c4_sync dff_12/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1253 gnd clk dff_12/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1254 dff_12/a_64_49# dff_12/a_33_9# vdd dff_12/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1255 dff_12/a_16_9# clk dff_12/a_16_49# dff_12/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1256 vdd clk dff_12/a_33_9# dff_12/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1257 dff_12/a_64_9# dff_12/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1258 dff_12/a_16_9# c4 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1259 dff_12/a_16_49# c4 vdd dff_12/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1260 dff_12/a_40_9# dff_12/a_16_9# dff_12/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1261 dff_12/a_64_49# clk dff_12/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1262 s3_sync dff_11/a_64_49# vdd dff_11/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1263 s3_sync dff_11/a_64_49# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1264 gnd clk dff_11/a_40_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1265 dff_11/a_64_49# dff_11/a_33_9# vdd dff_11/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1266 dff_11/a_16_9# clk dff_11/a_16_49# dff_11/w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1267 vdd clk dff_11/a_33_9# dff_11/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=200 ps=90
+M1268 dff_11/a_64_9# dff_11/a_33_9# gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1269 dff_11/a_16_9# s3 gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1270 dff_11/a_16_49# s3 vdd dff_11/w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1271 dff_11/a_40_9# dff_11/a_16_9# dff_11/a_33_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1272 dff_11/a_64_49# clk dff_11/a_64_9# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1273 g0 and_0/a_7_63# vdd and_0/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1274 g0 and_0/a_7_63# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1275 and_0/a_7_63# b0 and_0/a_7_3# Gnd CMOSN w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1276 and_0/a_7_3# a0 gnd Gnd CMOSN w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1277 and_0/a_7_63# a0 vdd and_0/w_n6_53# CMOSP w=40 l=2
++  ad=240 pd=92 as=0 ps=0
+M1278 vdd b0 and_0/a_7_63# and_0/w_n6_53# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1279 g1 and_1/a_7_63# vdd and_1/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1280 g1 and_1/a_7_63# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1281 and_1/a_7_63# b1 and_1/a_7_3# Gnd CMOSN w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1282 and_1/a_7_3# a1 gnd Gnd CMOSN w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1283 and_1/a_7_63# a1 vdd and_1/w_n6_53# CMOSP w=40 l=2
++  ad=240 pd=92 as=0 ps=0
+M1284 vdd b1 and_1/a_7_63# and_1/w_n6_53# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1285 g2 and_2/a_7_63# vdd and_2/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1286 g2 and_2/a_7_63# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1287 and_2/a_7_63# b2 and_2/a_7_3# Gnd CMOSN w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1288 and_2/a_7_3# a2 gnd Gnd CMOSN w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1289 and_2/a_7_63# a2 vdd and_2/w_n6_53# CMOSP w=40 l=2
++  ad=240 pd=92 as=0 ps=0
+M1290 vdd b2 and_2/a_7_63# and_2/w_n6_53# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1291 g3 and_3/a_7_63# vdd and_3/inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1292 g3 and_3/a_7_63# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1293 and_3/a_7_63# b3 and_3/a_7_3# Gnd CMOSN w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1294 and_3/a_7_3# a3 gnd Gnd CMOSN w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1295 and_3/a_7_63# a3 vdd and_3/w_n6_53# CMOSP w=40 l=2
++  ad=240 pd=92 as=0 ps=0
+M1296 vdd b3 and_3/a_7_63# and_3/w_n6_53# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 p1 xor_1/a_36_6# 1.37fF
+C1 s3 p3 0.42fF
+C2 dff_3/a_16_9# dff_3/a_33_9# 0.17fF
+C3 dff_0/a_16_9# gnd 0.24fF
+C4 vdd inv_1/w_0_n60# 0.14fF
+C5 xor_3/a_16_9# a3 0.07fF
+C6 vdd a2 1.59fF
+C7 gnd b1 0.90fF
+C8 vdd dff_6/a_33_9# 0.45fF
+C9 vdd dff_5/a_64_49# 0.45fF
+C10 and_1/inverter_0/w_0_n60# vdd 0.14fF
+C11 dff_3/a_33_9# vdd 0.45fF
+C12 vdd dff_2/w_3_39# 0.39fF
+C13 dff_7/w_3_39# b3_unsync 0.12fF
+C14 c2_0/a_24_9# gnd 0.32fF
+C15 dff_2/w_3_39# dff_2/a_16_9# 0.14fF
+C16 s0 xor_0/a_16_9# 0.03fF
+C17 b3 xor_3/w_3_39# 0.34fF
+C18 dff_6/a_16_9# dff_6/a_33_9# 0.17fF
+C19 vdd dff_4/w_3_39# 0.39fF
+C20 c4_0/w_3_39# p2 0.23fF
+C21 c4_0/inverter_0/w_0_n60# c4_0/a_72_9# 0.09fF
+C22 xor_6/a_36_6# gnd 0.24fF
+C23 vdd inv_3/w_0_n60# 0.14fF
+C24 xor_1/w_3_39# b1 0.38fF
+C25 gnd xor_1/a_16_9# 0.50fF
+C26 c2_0/w_3_39# vdd 0.13fF
+C27 vdd c4_0/a_9_49# 0.95fF
+C28 s3 dff_11/w_3_39# 0.12fF
+C29 and_3/w_n6_53# and_3/a_7_63# 0.04fF
+C30 dff_6/inverter_0/w_0_n60# a3 0.08fF
+C31 vdd and_2/a_7_63# 0.86fF
+C32 dff_1/a_16_9# gnd 0.24fF
+C33 and_2/a_7_3# gnd 0.47fF
+C34 vdd dff_3/a_64_49# 0.45fF
+C35 clk dff_8/a_16_9# 0.05fF
+C36 gnd b2 0.79fF
+C37 c2 xor_4/w_3_39# 0.18fF
+C38 dff_7/w_3_39# vdd 0.39fF
+C39 dff_11/a_16_9# gnd 0.24fF
+C40 dff_9/a_64_49# dff_9/w_3_39# 0.08fF
+C41 dff_9/a_33_9# dff_9/a_16_9# 0.17fF
+C42 and_0/a_7_63# g0 0.05fF
+C43 g0 gnd 1.93fF
+C44 dff_0/inverter_0/w_0_n60# dff_0/a_64_49# 0.09fF
+C45 b0_unsync dff_1/w_3_39# 0.12fF
+C46 xor_1/w_3_39# xor_1/a_16_9# 0.16fF
+C47 inv_2/w_0_n60# s2_sync 0.09fF
+C48 s1 s0 0.11fF
+C49 vdd dff_10/a_64_49# 0.45fF
+C50 c3_0/a_16_9# c3_0/a_24_9# 0.21fF
+C51 c4_0/a_48_9# p3 0.29fF
+C52 c3_0/a_9_49# c3_0/a_32_49# 0.48fF
+C53 dff_7/w_3_39# dff_7/a_16_9# 0.14fF
+C54 a3 b3 0.24fF
+C55 clk dff_5/a_33_9# 0.11fF
+C56 c2_0/a_24_9# p2 0.22fF
+C57 vdd dff_10/a_33_9# 0.45fF
+C58 inv_1/a_13_n90# inv_1/w_0_n60# 0.08fF
+C59 p1 gnd 0.87fF
+C60 b2_unsync gnd 0.04fF
+C61 dff_5/a_16_9# clk 0.66fF
+C62 xor_2/a_16_9# a2 0.07fF
+C63 c2 xor_4/a_16_9# 0.07fF
+C64 vdd dff_7/a_33_9# 0.45fF
+C65 vdd inv_4/a_13_n90# 0.50fF
+C66 c4_0/w_3_39# g2 0.14fF
+C67 c4 vdd 0.83fF
+C68 xor_0/a_36_6# xor_0/w_3_39# 0.66fF
+C69 s0 b0 0.51fF
+C70 dff_1/a_33_9# gnd 0.03fF
+C71 dff_12/inverter_0/w_0_n60# dff_12/a_64_49# 0.09fF
+C72 vdd dff_8/inverter_0/w_0_n60# 0.14fF
+C73 xor_5/a_36_6# s0 0.06fF
+C74 inv_3/w_0_n60# inv_3/a_13_n90# 0.08fF
+C75 p1 xor_1/w_3_39# 0.33fF
+C76 dff_7/a_16_9# dff_7/a_33_9# 0.17fF
+C77 clk dff_12/a_33_9# 0.11fF
+C78 a1 b1 0.34fF
+C79 s0 clk 0.12fF
+C80 vdd s0_sync 0.45fF
+C81 c3_0/a_9_49# vdd 0.95fF
+C82 p2 b2 0.44fF
+C83 dff_5/w_3_39# dff_5/a_33_9# 0.21fF
+C84 c4 dff_12/w_3_39# 0.12fF
+C85 dff_5/a_16_9# dff_5/w_3_39# 0.14fF
+C86 b0 and_1/a_7_63# 0.08fF
+C87 g0 p2 0.07fF
+C88 dff_9/a_33_9# gnd 0.03fF
+C89 xor_1/a_36_6# gnd 0.24fF
+C90 dff_4/a_64_49# a2 0.05fF
+C91 a1_unsync gnd 0.04fF
+C92 a1 and_1/w_n6_53# 0.64fF
+C93 clk s3 0.12fF
+C94 a3 and_3/w_n6_53# 0.32fF
+C95 c3 xor_6/a_16_9# 0.07fF
+C96 inv_2/w_0_n60# inv_2/a_13_n90# 0.08fF
+C97 p1 c4_0/a_24_9# 0.18fF
+C98 c3_0/a_32_49# g1 0.07fF
+C99 vdd and_2/inverter_0/w_0_n60# 0.14fF
+C100 and_0/a_7_63# a0 0.09fF
+C101 a1 xor_1/a_16_9# 0.07fF
+C102 gnd dff_4/a_16_9# 0.24fF
+C103 gnd a0 1.24fF
+C104 p1 p2 0.09fF
+C105 vdd xor_6/a_16_9# 0.86fF
+C106 clk dff_4/a_33_9# 0.11fF
+C107 c4_0/w_3_39# g3 0.12fF
+C108 vdd and_0/inverter_0/w_0_n60# 0.14fF
+C109 dff_9/a_16_9# gnd 0.24fF
+C110 vdd dff_6/w_3_39# 0.39fF
+C111 c3_0/a_9_49# c3_0/w_3_39# 0.12fF
+C112 dff_4/a_64_49# dff_4/w_3_39# 0.08fF
+C113 dff_0/a_33_9# gnd 0.03fF
+C114 xor_1/w_3_39# xor_1/a_36_6# 0.66fF
+C115 xor_6/w_3_39# xor_6/a_36_6# 0.66fF
+C116 p3 xor_6/a_16_9# 0.42fF
+C117 vdd xor_2/w_3_39# 0.47fF
+C118 dff_3/w_3_39# b1_unsync 0.12fF
+C119 clk dff_6/a_33_9# 0.11fF
+C120 dff_3/a_33_9# clk 0.11fF
+C121 clk dff_2/w_3_39# 0.60fF
+C122 and_0/w_n6_53# vdd 0.20fF
+C123 dff_6/w_3_39# dff_6/a_16_9# 0.14fF
+C124 c4_0/w_3_39# c4_0/a_72_9# 0.08fF
+C125 g2 b2 0.08fF
+C126 g2 xor_2/a_54_49# 0.00fF
+C127 xor_5/a_16_9# s0 0.06fF
+C128 vdd xor_0/w_3_39# 0.47fF
+C129 p1 a1 0.08fF
+C130 vdd g1 1.28fF
+C131 and_0/a_7_3# gnd 0.47fF
+C132 and_0/a_7_63# and_0/a_7_3# 0.47fF
+C133 clk dff_4/w_3_39# 0.60fF
+C134 dff_10/a_33_9# dff_10/a_16_9# 0.17fF
+C135 dff_6/a_64_49# gnd 0.09fF
+C136 vdd c4_0/a_56_49# 0.95fF
+C137 xor_0/a_36_6# vdd 0.64fF
+C138 dff_8/a_64_49# dff_8/inverter_0/w_0_n60# 0.09fF
+C139 vdd and_3/inverter_0/w_0_n60# 0.14fF
+C140 c2_0/a_24_9# c2_0/inverter_0/w_0_n60# 0.09fF
+C141 and_3/a_7_63# b2 0.24fF
+C142 c4_sync gnd 0.29fF
+C143 p1 g2 0.01fF
+C144 xor_2/a_36_6# b2 0.32fF
+C145 dff_5/a_64_49# dff_5/w_3_39# 0.08fF
+C146 dff_7/w_3_39# clk 0.60fF
+C147 dff_8/a_64_49# s0_sync 0.05fF
+C148 p3 c4_0/a_56_49# 0.18fF
+C149 gnd inv_0/a_13_n90# 0.24fF
+C150 dff_4/inverter_0/w_0_n60# a2 0.08fF
+C151 and_0/a_7_63# gnd 0.11fF
+C152 c4 c4_0/inverter_0/w_0_n60# 0.08fF
+C153 a2_unsync gnd 0.04fF
+C154 c3_0/w_3_39# g1 0.14fF
+C155 vdd dff_5/inverter_0/w_0_n60# 0.14fF
+C156 gnd dff_12/a_16_9# 0.24fF
+C157 c3 c3_0/inverter_0/w_0_n60# 0.08fF
+C158 clk dff_10/a_33_9# 0.11fF
+C159 xor_3/a_36_6# gnd 0.24fF
+C160 gnd s3_sync 0.57fF
+C161 a1 xor_1/a_36_6# 0.16fF
+C162 s0 xor_5/a_32_9# 0.00fF
+C163 c3_0/inverter_0/w_0_n60# vdd 0.14fF
+C164 vdd dff_2/a_64_49# 0.45fF
+C165 xor_2/a_16_9# xor_2/w_3_39# 0.16fF
+C166 vdd c3_0/a_32_49# 0.95fF
+C167 xor_0/w_3_39# xor_0/a_16_9# 0.16fF
+C168 clk dff_7/a_33_9# 0.11fF
+C169 vdd b3_unsync 0.13fF
+C170 and_1/a_7_3# gnd 0.47fF
+C171 c3_0/a_9_49# c3_0/a_24_9# 0.03fF
+C172 c4 clk 0.12fF
+C173 c3_0/inverter_0/w_0_n60# p3 0.17fF
+C174 c2_0/a_24_9# c2 0.05fF
+C175 xor_0/a_36_6# xor_0/a_16_9# 0.07fF
+C176 b0_unsync gnd 0.04fF
+C177 dff_8/a_33_9# dff_8/w_3_39# 0.21fF
+C178 dff_3/a_16_9# vdd 0.03fF
+C179 s1_sync dff_9/inverter_0/w_0_n60# 0.08fF
+C180 inv_4/w_0_n60# c4_sync 0.09fF
+C181 dff_3/inverter_0/w_0_n60# b1 0.08fF
+C182 c3 vdd 0.58fF
+C183 gnd c4_0/a_24_9# 0.53fF
+C184 p2 gnd 1.65fF
+C185 c3_0/w_3_39# c3_0/a_32_49# 0.13fF
+C186 and_0/inverter_0/w_0_n60# b0 0.14fF
+C187 s0_sync inv_0/w_0_n60# 0.09fF
+C188 vdd dff_2/a_16_9# 0.03fF
+C189 b1_unsync gnd 0.04fF
+C190 c3 p3 0.09fF
+C191 a3 b2 0.01fF
+C192 s1_sync gnd 0.57fF
+C193 and_1/a_7_63# b1 0.08fF
+C194 vdd p3 1.64fF
+C195 c4_0/a_24_9# c4_0/a_32_49# 0.08fF
+C196 dff_7/a_16_9# vdd 0.03fF
+C197 vdd dff_6/a_16_9# 0.03fF
+C198 p2 c4_0/a_32_49# 0.18fF
+C199 clk dff_6/w_3_39# 0.60fF
+C200 c4_0/w_3_39# c4_0/a_9_49# 0.12fF
+C201 dff_2/a_33_9# gnd 0.03fF
+C202 and_0/w_n6_53# b0 0.34fF
+C203 vdd dff_12/w_3_39# 0.39fF
+C204 c3_0/a_24_9# g1 0.13fF
+C205 xor_6/a_32_9# p3 0.00fF
+C206 a2 b1 0.01fF
+C207 s3 xor_6/a_36_6# 1.37fF
+C208 p1 xor_5/a_54_9# 0.00fF
+C209 xor_4/a_36_6# gnd 0.24fF
+C210 g0 s0 0.25fF
+C211 and_1/inverter_0/w_0_n60# b1 0.14fF
+C212 and_1/w_n6_53# and_1/a_7_63# 0.04fF
+C213 xor_0/w_3_39# b0 0.46fF
+C214 p1 c3_0/a_16_9# 0.20fF
+C215 dff_11/a_33_9# vdd 0.45fF
+C216 a1 gnd 1.35fF
+C217 c2 p1 0.08fF
+C218 c3_0/w_3_39# vdd 0.25fF
+C219 dff_7/a_64_49# dff_7/w_3_39# 0.08fF
+C220 dff_8/a_33_9# gnd 0.03fF
+C221 dff_10/inverter_0/w_0_n60# s2_sync 0.08fF
+C222 g2 xor_2/a_32_49# 0.00fF
+C223 xor_0/a_36_6# b0 0.32fF
+C224 a3_unsync gnd 0.04fF
+C225 p1 s0 0.01fF
+C226 xor_3/a_32_9# b3 0.00fF
+C227 dff_12/a_64_49# c4_sync 0.05fF
+C228 g2 gnd 0.36fF
+C229 p2 c4_0/a_24_9# 0.29fF
+C230 vdd xor_3/a_16_9# 0.86fF
+C231 vdd xor_0/a_16_9# 0.86fF
+C232 vdd dff_11/w_3_39# 0.39fF
+C233 s2 gnd 0.54fF
+C234 xor_1/w_3_39# a1 0.36fF
+C235 dff_8/w_3_39# dff_8/a_16_9# 0.14fF
+C236 and_2/a_7_63# b1 0.24fF
+C237 c2_0/w_3_39# c2_0/a_24_9# 0.08fF
+C238 vdd inv_3/a_13_n90# 0.50fF
+C239 dff_12/a_64_49# gnd 0.09fF
+C240 vdd inv_1/a_13_n90# 0.50fF
+C241 b2 a2 0.36fF
+C242 dff_3/a_64_49# b1 0.05fF
+C243 c2_0/a_9_49# c2_0/w_3_39# 0.12fF
+C244 p3 xor_3/a_16_9# 0.03fF
+C245 vdd xor_2/a_16_9# 0.86fF
+C246 dff_5/a_64_49# b2 0.05fF
+C247 and_3/a_7_63# gnd 0.11fF
+C248 c3_0/a_32_49# c3_0/a_24_9# 0.08fF
+C249 xor_2/a_36_6# gnd 0.24fF
+C250 xor_4/a_36_6# p2 0.32fF
+C251 dff_11/a_33_9# dff_11/w_3_39# 0.21fF
+C252 dff_8/a_64_49# vdd 0.45fF
+C253 dff_6/inverter_0/w_0_n60# vdd 0.14fF
+C254 c3_0/a_48_9# c3_0/inverter_0/w_0_n60# 0.09fF
+C255 vdd dff_11/inverter_0/w_0_n60# 0.14fF
+C256 gnd dff_11/a_64_49# 0.09fF
+C257 c3_0/a_48_9# c3_0/a_32_49# 0.51fF
+C258 and_2/a_7_63# and_2/a_7_3# 0.47fF
+C259 xor_4/w_3_39# vdd 0.47fF
+C260 and_2/w_n6_53# a2 0.22fF
+C261 and_2/a_7_63# b2 0.08fF
+C262 vdd dff_10/a_16_9# 0.03fF
+C263 dff_0/a_64_49# vdd 0.45fF
+C264 s1 vdd 1.44fF
+C265 clk b3_unsync 0.12fF
+C266 dff_0/inverter_0/w_0_n60# a0 0.08fF
+C267 dff_7/inverter_0/w_0_n60# vdd 0.14fF
+C268 g3 gnd 0.29fF
+C269 dff_3/a_33_9# dff_3/w_3_39# 0.21fF
+C270 s0 a0 0.08fF
+C271 g0 c2_0/w_3_39# 0.49fF
+C272 g0 c4_0/a_9_49# 0.42fF
+C273 vdd dff_9/w_3_39# 0.39fF
+C274 p2 g2 0.44fF
+C275 dff_11/a_64_49# s3_sync 0.05fF
+C276 s2 dff_10/w_3_39# 0.43fF
+C277 dff_4/a_64_49# vdd 0.45fF
+C278 c4_0/inverter_0/w_0_n60# vdd 0.14fF
+C279 dff_8/a_16_9# gnd 0.24fF
+C280 s2 p2 0.42fF
+C281 s0 dff_8/w_3_39# 0.15fF
+C282 vdd b3 1.42fF
+C283 c2_0/w_3_39# p1 0.21fF
+C284 vdd b0 1.39fF
+C285 p1 c4_0/a_9_49# 0.41fF
+C286 c4_0/a_72_9# gnd 0.35fF
+C287 c3_0/a_48_9# c3 0.05fF
+C288 dff_3/a_16_9# clk 0.67fF
+C289 xor_4/a_16_9# vdd 0.86fF
+C290 dff_9/a_64_49# dff_9/inverter_0/w_0_n60# 0.09fF
+C291 xor_3/a_36_6# xor_3/w_3_39# 0.66fF
+C292 p3 b3 0.42fF
+C293 c3_0/a_48_9# vdd 0.03fF
+C294 and_2/w_n6_53# and_2/a_7_63# 0.04fF
+C295 xor_5/a_36_6# vdd 0.64fF
+C296 s2_sync gnd 0.57fF
+C297 dff_4/a_33_9# dff_4/a_16_9# 0.17fF
+C298 dff_0/w_3_39# vdd 0.39fF
+C299 vdd inv_2/w_0_n60# 0.14fF
+C300 p2 xor_2/a_36_6# 1.37fF
+C301 dff_6/a_64_49# a3 0.05fF
+C302 gnd dff_5/a_33_9# 0.03fF
+C303 dff_3/w_3_39# dff_3/a_64_49# 0.08fF
+C304 clk vdd 3.54fF
+C305 dff_5/a_16_9# gnd 0.24fF
+C306 dff_2/w_3_39# a1_unsync 0.12fF
+C307 clk dff_2/a_16_9# 0.66fF
+C308 s2 xor_4/a_36_6# 1.37fF
+C309 c3_0/a_48_9# p3 0.01fF
+C310 c4_0/w_3_39# g1 0.14fF
+C311 xor_1/a_54_9# b1 0.00fF
+C312 dff_9/a_64_49# gnd 0.09fF
+C313 c3_0/a_16_9# gnd 0.24fF
+C314 vdd inv_0/w_0_n60# 0.14fF
+C315 dff_7/a_16_9# clk 0.66fF
+C316 clk dff_6/a_16_9# 0.66fF
+C317 c2 gnd 0.87fF
+C318 a3 gnd 1.05fF
+C319 c4_0/w_3_39# c4_0/a_56_49# 0.13fF
+C320 clk dff_12/w_3_39# 0.64fF
+C321 dff_12/a_33_9# gnd 0.03fF
+C322 c3_0/w_3_39# c3_0/a_48_9# 0.08fF
+C323 s0 gnd 0.73fF
+C324 dff_11/a_33_9# clk 0.11fF
+C325 dff_4/w_3_39# dff_4/a_16_9# 0.14fF
+C326 xor_3/a_16_9# b3 0.75fF
+C327 xor_3/a_36_6# a3 0.16fF
+C328 g0 c3_0/a_9_49# 0.08fF
+C329 vdd and_3/w_n6_53# 0.20fF
+C330 xor_6/a_16_9# xor_6/a_36_6# 0.07fF
+C331 b0 xor_0/a_16_9# 0.60fF
+C332 vdd dff_5/w_3_39# 0.39fF
+C333 dff_12/a_33_9# dff_12/a_16_9# 0.17fF
+C334 dff_10/inverter_0/w_0_n60# dff_10/a_64_49# 0.09fF
+C335 xor_3/a_54_9# b3 0.00fF
+C336 g1 b1 0.09fF
+C337 vdd dff_4/inverter_0/w_0_n60# 0.14fF
+C338 c3_0/a_9_49# p1 0.69fF
+C339 c2_0/a_24_9# g1 0.08fF
+C340 s3 gnd 0.38fF
+C341 vdd dff_1/a_64_49# 0.45fF
+C342 g2 xor_2/a_36_6# 0.03fF
+C343 clk dff_11/w_3_39# 0.64fF
+C344 and_1/a_7_63# gnd 0.11fF
+C345 inv_2/a_13_n90# gnd 0.24fF
+C346 xor_5/a_16_9# vdd 0.86fF
+C347 dff_4/a_33_9# gnd 0.03fF
+C348 g0 and_0/inverter_0/w_0_n60# 0.08fF
+C349 xor_2/w_3_39# b2 0.34fF
+C350 s1 dff_9/w_3_39# 0.49fF
+C351 dff_8/a_33_9# dff_8/a_16_9# 0.17fF
+C352 gnd a2 1.24fF
+C353 c2 p2 0.99fF
+C354 gnd dff_6/a_33_9# 0.03fF
+C355 dff_5/a_64_49# gnd 0.09fF
+C356 dff_3/a_33_9# gnd 0.03fF
+C357 dff_9/a_64_49# s1_sync 0.05fF
+C358 dff_7/inverter_0/w_0_n60# b3 0.08fF
+C359 and_1/a_7_3# and_1/a_7_63# 0.47fF
+C360 xor_2/a_32_9# b2 0.00fF
+C361 xor_4/a_16_9# xor_4/w_3_39# 0.16fF
+C362 vdd dff_12/inverter_0/w_0_n60# 0.14fF
+C363 dff_2/inverter_0/w_0_n60# a1 0.08fF
+C364 a0_unsync vdd 0.13fF
+C365 g0 g1 0.07fF
+C366 s1 xor_5/a_36_6# 1.37fF
+C367 dff_0/a_64_49# dff_0/w_3_39# 0.08fF
+C368 g3 and_3/a_7_63# 0.05fF
+C369 c4_0/w_3_39# vdd 0.37fF
+C370 clk dff_10/a_16_9# 0.21fF
+C371 s1 clk 0.12fF
+C372 a2_unsync dff_4/w_3_39# 0.12fF
+C373 c2 xor_4/a_36_6# 0.16fF
+C374 dff_7/a_64_49# vdd 0.45fF
+C375 g0 xor_0/a_36_6# 0.09fF
+C376 vdd xor_5/w_3_39# 0.47fF
+C377 and_2/a_7_63# gnd 0.11fF
+C378 c3_0/a_48_9# c3_0/a_24_9# 0.28fF
+C379 clk dff_9/w_3_39# 0.64fF
+C380 p1 g1 0.68fF
+C381 dff_3/a_64_49# gnd 0.09fF
+C382 c4_0/w_3_39# p3 0.23fF
+C383 dff_1/inverter_0/w_0_n60# vdd 0.14fF
+C384 inv_3/w_0_n60# s3_sync 0.09fF
+C385 c4_0/a_48_9# gnd 0.53fF
+C386 dff_5/inverter_0/w_0_n60# b2 0.08fF
+C387 p2 xor_4/a_32_9# 0.00fF
+C388 c4_0/a_9_49# c4_0/a_32_49# 0.48fF
+C389 dff_0/a_16_9# vdd 0.03fF
+C390 dff_10/a_64_49# gnd 0.09fF
+C391 p2 a2 0.08fF
+C392 inv_4/a_13_n90# c4_sync 0.05fF
+C393 c2 s2 0.08fF
+C394 vdd b1 1.86fF
+C395 dff_0/w_3_39# clk 0.30fF
+C396 and_0/inverter_0/w_0_n60# a0 0.18fF
+C397 dff_10/a_33_9# gnd 0.03fF
+C398 c2_0/a_24_9# vdd 0.03fF
+C399 c4_0/a_48_9# c4_0/a_32_49# 0.03fF
+C400 s1_sync inv_1/w_0_n60# 0.09fF
+C401 c2_0/a_9_49# vdd 0.95fF
+C402 dff_7/a_33_9# gnd 0.03fF
+C403 c4_0/a_72_9# g3 0.08fF
+C404 inv_4/a_13_n90# gnd 0.24fF
+C405 vdd dff_1/w_3_39# 0.39fF
+C406 a1 and_1/a_7_63# 0.14fF
+C407 a3 and_3/a_7_63# 0.07fF
+C408 b3 and_3/w_n6_53# 0.12fF
+C409 c3 xor_6/a_36_6# 0.16fF
+C410 c4 gnd 0.24fF
+C411 vdd and_1/w_n6_53# 0.20fF
+C412 and_0/w_n6_53# a0 0.62fF
+C413 dff_4/a_64_49# dff_4/inverter_0/w_0_n60# 0.09fF
+C414 vdd xor_6/a_36_6# 0.64fF
+C415 dff_2/w_3_39# dff_2/a_33_9# 0.21fF
+C416 s1 xor_5/a_16_9# 0.03fF
+C417 c4_0/a_9_49# c4_0/a_24_9# 0.03fF
+C418 and_3/a_7_3# gnd 0.47fF
+C419 vdd xor_1/a_16_9# 0.86fF
+C420 s3 xor_6/w_3_39# 0.33fF
+C421 xor_0/w_3_39# a0 0.26fF
+C422 s0_sync inv_0/a_13_n90# 0.05fF
+C423 s2 s3 0.18fF
+C424 vdd dff_1/a_16_9# 0.03fF
+C425 s0_sync gnd 0.57fF
+C426 and_1/inverter_0/w_0_n60# a1 0.40fF
+C427 p3 xor_6/a_36_6# 0.32fF
+C428 p1 c2_0/a_16_9# 0.01fF
+C429 c4_0/a_48_9# c4_0/a_24_9# 0.28fF
+C430 vdd b2 1.63fF
+C431 b0 dff_1/a_64_49# 0.05fF
+C432 clk dff_5/w_3_39# 0.60fF
+C433 c4_0/a_48_9# p2 0.01fF
+C434 dff_11/a_16_9# vdd 0.03fF
+C435 xor_0/a_36_6# a0 0.16fF
+C436 a3 g3 0.07fF
+C437 xor_0/a_54_9# b0 0.00fF
+C438 p1 c4_0/a_16_9# 0.13fF
+C439 g0 vdd 1.24fF
+C440 dff_6/a_64_49# dff_6/w_3_39# 0.08fF
+C441 c2 c2_0/inverter_0/w_0_n60# 0.08fF
+C442 dff_10/a_64_49# dff_10/w_3_39# 0.08fF
+C443 g2 a2 0.20fF
+C444 dff_10/w_3_39# dff_10/a_33_9# 0.21fF
+C445 xor_5/a_32_49# p1 0.00fF
+C446 xor_5/a_36_6# xor_5/a_16_9# 0.07fF
+C447 a3 xor_3/w_3_39# 0.45fF
+C448 dff_3/a_16_9# dff_3/w_3_39# 0.14fF
+C449 xor_6/a_16_9# gnd 0.50fF
+C450 b2_unsync vdd 0.13fF
+C451 p1 vdd 2.70fF
+C452 dff_5/a_16_9# dff_5/a_33_9# 0.17fF
+C453 and_0/a_7_63# and_0/inverter_0/w_0_n60# 0.09fF
+C454 dff_7/inverter_0/w_0_n60# dff_7/a_64_49# 0.09fF
+C455 vdd and_2/w_n6_53# 0.20fF
+C456 s1 xor_5/w_3_39# 0.33fF
+C457 dff_3/w_3_39# vdd 0.39fF
+C458 dff_11/a_33_9# dff_11/a_16_9# 0.17fF
+C459 inv_4/w_0_n60# inv_4/a_13_n90# 0.08fF
+C460 vdd dff_1/a_33_9# 0.45fF
+C461 xor_2/a_36_6# a2 0.16fF
+C462 and_2/a_7_63# g2 0.05fF
+C463 g0 c3_0/w_3_39# 0.14fF
+C464 and_0/a_7_63# and_0/w_n6_53# 0.04fF
+C465 dff_7/a_64_49# b3 0.05fF
+C466 dff_0/w_3_39# a0_unsync 0.12fF
+C467 c4_0/a_48_9# g2 0.13fF
+C468 vdd dff_10/inverter_0/w_0_n60# 0.14fF
+C469 a0_unsync clk 0.12fF
+C470 gnd g1 0.41fF
+C471 dff_11/a_16_9# dff_11/w_3_39# 0.14fF
+C472 p1 c3_0/w_3_39# 0.28fF
+C473 g0 xor_0/a_16_9# 0.09fF
+C474 dff_1/inverter_0/w_0_n60# b0 0.08fF
+C475 s0 xor_5/a_54_9# 0.00fF
+C476 xor_5/a_36_6# xor_5/w_3_39# 0.66fF
+C477 xor_2/a_16_9# b2 0.75fF
+C478 dff_9/a_33_9# vdd 0.45fF
+C479 vdd xor_1/a_36_6# 0.64fF
+C480 xor_0/a_36_6# gnd 0.24fF
+C481 vdd a1_unsync 0.13fF
+C482 s2_sync inv_2/a_13_n90# 0.05fF
+C483 g1 c4_0/a_32_49# 0.07fF
+C484 vdd dff_4/a_16_9# 0.03fF
+C485 vdd a0 0.95fF
+C486 b0 b1 0.01fF
+C487 vdd dff_9/a_16_9# 0.03fF
+C488 c4_0/a_32_49# c4_0/a_56_49# 0.48fF
+C489 dff_0/w_3_39# dff_0/a_16_9# 0.14fF
+C490 vdd dff_8/w_3_39# 0.39fF
+C491 dff_0/a_33_9# vdd 0.45fF
+C492 dff_0/a_16_9# clk 0.05fF
+C493 p2 xor_2/w_3_39# 0.33fF
+C494 xor_0/a_32_9# b0 0.00fF
+C495 dff_2/a_64_49# gnd 0.09fF
+C496 g0 s1 0.08fF
+C497 clk dff_1/w_3_39# 0.60fF
+C498 c4_0/a_24_9# g1 0.13fF
+C499 p2 g1 0.16fF
+C500 b3 b2 0.01fF
+C501 and_3/a_7_3# and_3/a_7_63# 0.47fF
+C502 s1 p1 0.42fF
+C503 vdd dff_9/inverter_0/w_0_n60# 0.14fF
+C504 c4_0/a_48_9# c4_0/a_72_9# 0.28fF
+C505 dff_6/a_64_49# vdd 0.45fF
+C506 g0 b0 0.28fF
+C507 clk dff_1/a_16_9# 0.66fF
+C508 gnd c4_0/a_16_9# 0.24fF
+C509 g2 and_2/inverter_0/w_0_n60# 0.09fF
+C510 dff_1/inverter_0/w_0_n60# dff_1/a_64_49# 0.09fF
+C511 vdd c4_sync 0.45fF
+C512 xor_5/a_16_9# xor_5/w_3_39# 0.16fF
+C513 xor_6/a_54_9# p3 0.00fF
+C514 a3_unsync dff_6/w_3_39# 0.12fF
+C515 dff_3/a_16_9# gnd 0.24fF
+C516 xor_6/w_3_39# xor_6/a_16_9# 0.16fF
+C517 a0 xor_0/a_16_9# 0.07fF
+C518 p1 c3_0/a_24_9# 0.28fF
+C519 dff_11/a_16_9# clk 0.19fF
+C520 c3 gnd 0.87fF
+C521 g0 xor_5/a_36_6# 0.16fF
+C522 vdd inv_0/a_13_n90# 0.45fF
+C523 vdd gnd 4.27fF
+C524 and_0/a_7_63# vdd 0.86fF
+C525 g2 xor_2/w_3_39# 0.03fF
+C526 dff_10/a_64_49# s2_sync 0.05fF
+C527 a1 g1 0.13fF
+C528 dff_2/a_16_9# gnd 0.24fF
+C529 vdd a2_unsync 0.13fF
+C530 vdd dff_12/a_16_9# 0.03fF
+C531 xor_5/a_36_6# p1 0.32fF
+C532 and_1/inverter_0/w_0_n60# and_1/a_7_63# 0.09fF
+C533 c4 c4_0/a_72_9# 0.05fF
+C534 p3 gnd 0.53fF
+C535 vdd xor_3/a_36_6# 0.64fF
+C536 vdd s3_sync 0.45fF
+C537 b2_unsync clk 0.12fF
+C538 dff_1/a_64_49# dff_1/w_3_39# 0.08fF
+C539 dff_7/a_16_9# gnd 0.24fF
+C540 gnd dff_6/a_16_9# 0.24fF
+C541 p2 c3_0/a_32_49# 0.18fF
+C542 vdd c4_0/a_32_49# 0.95fF
+C543 and_3/w_n6_53# b2 0.33fF
+C544 dff_3/w_3_39# clk 0.60fF
+C545 xor_1/w_3_39# vdd 0.47fF
+C546 dff_3/a_64_49# dff_3/inverter_0/w_0_n60# 0.09fF
+C547 p3 xor_3/a_36_6# 1.37fF
+C548 dff_9/a_33_9# dff_9/w_3_39# 0.21fF
+C549 xor_2/a_36_6# xor_2/w_3_39# 0.66fF
+C550 clk dff_1/a_33_9# 0.11fF
+C551 g2 c4_0/a_56_49# 0.07fF
+C552 dff_11/a_33_9# gnd 0.03fF
+C553 dff_0/a_64_49# a0 0.05fF
+C554 dff_8/a_64_49# dff_8/w_3_39# 0.08fF
+C555 dff_12/w_3_39# dff_12/a_16_9# 0.14fF
+C556 dff_4/a_33_9# dff_4/w_3_39# 0.21fF
+C557 vdd b0_unsync 0.13fF
+C558 c4_0/a_16_9# c4_0/a_24_9# 0.21fF
+C559 dff_9/a_16_9# dff_9/w_3_39# 0.14fF
+C560 a1 dff_2/a_64_49# 0.05fF
+C561 c3 p2 0.09fF
+C562 vdd dff_10/w_3_39# 0.39fF
+C563 xor_3/a_16_9# gnd 0.50fF
+C564 gnd xor_0/a_16_9# 0.50fF
+C565 b2_unsync dff_5/w_3_39# 0.12fF
+C566 b0 a0 0.25fF
+C567 and_3/inverter_0/w_0_n60# and_3/a_7_63# 0.09fF
+C568 dff_9/a_33_9# clk 0.11fF
+C569 p2 vdd 2.13fF
+C570 g0 xor_0/a_54_9# 0.01fF
+C571 g0 xor_5/a_16_9# 0.07fF
+C572 clk a1_unsync 0.12fF
+C573 vdd inv_4/w_0_n60# 0.14fF
+C574 inv_3/a_13_n90# gnd 0.24fF
+C575 vdd b1_unsync 0.13fF
+C576 inv_1/a_13_n90# gnd 0.24fF
+C577 xor_2/a_16_9# gnd 0.50fF
+C578 xor_3/a_16_9# xor_3/a_36_6# 0.07fF
+C579 vdd s1_sync 0.45fF
+C580 dff_6/inverter_0/w_0_n60# dff_6/a_64_49# 0.09fF
+C581 clk dff_4/a_16_9# 0.66fF
+C582 p1 xor_5/a_16_9# 0.20fF
+C583 inv_3/a_13_n90# s3_sync 0.05fF
+C584 clk dff_9/a_16_9# 0.19fF
+C585 c4 s3 0.14fF
+C586 vdd dff_2/a_33_9# 0.45fF
+C587 dff_0/w_3_39# dff_0/a_33_9# 0.21fF
+C588 clk dff_8/w_3_39# 0.30fF
+C589 dff_0/a_33_9# clk 0.11fF
+C590 dff_2/a_16_9# dff_2/a_33_9# 0.17fF
+C591 g3 and_3/inverter_0/w_0_n60# 0.08fF
+C592 xor_4/a_36_6# vdd 0.64fF
+C593 dff_8/a_64_49# gnd 0.09fF
+C594 a1 vdd 1.23fF
+C595 c3_0/w_3_39# p2 0.23fF
+C596 dff_8/a_33_9# vdd 0.45fF
+C597 dff_10/a_16_9# gnd 0.24fF
+C598 dff_0/a_64_49# gnd 0.09fF
+C599 g0 c4_0/w_3_39# 0.15fF
+C600 s1 gnd 0.41fF
+C601 c2_0/a_9_49# c2_0/a_24_9# 0.54fF
+C602 c4_0/a_72_9# c4_0/a_56_49# 0.51fF
+C603 a3_unsync vdd 0.13fF
+C604 c3 xor_6/w_3_39# 0.18fF
+C605 dff_11/inverter_0/w_0_n60# s3_sync 0.08fF
+C606 g0 xor_5/w_3_39# 0.18fF
+C607 and_1/w_n6_53# b1 0.28fF
+C608 dff_4/a_64_49# gnd 0.09fF
+C609 vdd g2 1.21fF
+C610 vdd xor_6/w_3_39# 0.47fF
+C611 c4_0/w_3_39# p1 0.13fF
+C612 c3_0/a_24_9# gnd 0.53fF
+C613 s2 vdd 0.96fF
+C614 xor_1/a_16_9# b1 0.69fF
+C615 b3 gnd 0.44fF
+C616 and_0/a_7_63# b0 0.08fF
+C617 b0 gnd 0.98fF
+C618 vdd dff_12/a_64_49# 0.45fF
+C619 p1 xor_5/w_3_39# 0.48fF
+C620 p3 g2 0.05fF
+C621 s3 xor_6/a_16_9# 0.03fF
+C622 p2 xor_2/a_16_9# 0.03fF
+C623 p1 xor_5/a_32_9# 0.00fF
+C624 b2 b1 0.01fF
+C625 xor_6/w_3_39# p3 0.40fF
+C626 xor_4/a_16_9# gnd 0.50fF
+C627 c3_0/a_48_9# gnd 0.35fF
+C628 xor_3/a_36_6# b3 0.32fF
+C629 vdd and_3/a_7_63# 0.86fF
+C630 xor_5/a_36_6# gnd 0.24fF
+C631 dff_1/a_16_9# dff_1/w_3_39# 0.14fF
+C632 inv_1/a_13_n90# s1_sync 0.05fF
+C633 vdd xor_2/a_36_6# 0.64fF
+C634 s0 xor_0/w_3_39# 0.34fF
+C635 clk gnd 7.32fF
+C636 dff_7/w_3_39# dff_7/a_33_9# 0.21fF
+C637 a3 and_3/inverter_0/w_0_n60# 0.18fF
+C638 clk a2_unsync 0.12fF
+C639 g0 c2_0/a_9_49# 0.21fF
+C640 b0 and_1/a_7_3# 0.09fF
+C641 and_2/inverter_0/w_0_n60# a2 0.11fF
+C642 clk dff_12/a_16_9# 0.19fF
+C643 c3_0/w_3_39# g2 0.12fF
+C644 dff_12/a_64_49# dff_12/w_3_39# 0.08fF
+C645 g0 xor_0/a_32_9# 0.01fF
+C646 p1 b1 0.42fF
+C647 dff_10/w_3_39# dff_10/a_16_9# 0.14fF
+C648 xor_0/a_36_6# s0 1.37fF
+C649 vdd dff_11/a_64_49# 0.45fF
+C650 inv_0/w_0_n60# inv_0/a_13_n90# 0.08fF
+C651 c2_0/a_24_9# p1 0.31fF
+C652 xor_4/w_3_39# p2 0.22fF
+C653 dff_2/inverter_0/w_0_n60# dff_2/a_64_49# 0.09fF
+C654 dff_6/w_3_39# dff_6/a_33_9# 0.21fF
+C655 c2_0/a_9_49# p1 0.60fF
+C656 and_2/w_n6_53# b1 0.36fF
+C657 vdd g3 0.77fF
+C658 xor_2/w_3_39# a2 0.47fF
+C659 and_1/a_7_63# g1 0.05fF
+C660 vdd c2_0/inverter_0/w_0_n60# 0.14fF
+C661 vdd dff_8/a_16_9# 0.03fF
+C662 p2 c3_0/a_24_9# 0.29fF
+C663 p3 g3 0.27fF
+C664 vdd xor_3/w_3_39# 0.47fF
+C665 clk b0_unsync 0.12fF
+C666 g2 xor_2/a_16_9# 0.03fF
+C667 dff_1/a_33_9# dff_1/w_3_39# 0.21fF
+C668 p1 xor_1/a_16_9# 0.03fF
+C669 and_2/a_7_63# and_2/inverter_0/w_0_n60# 0.09fF
+C670 xor_2/a_54_9# b2 0.00fF
+C671 c4_0/a_72_9# vdd 0.03fF
+C672 xor_4/a_36_6# xor_4/w_3_39# 0.66fF
+C673 xor_4/a_16_9# p2 0.23fF
+C674 and_1/inverter_0/w_0_n60# g1 0.08fF
+C675 c3_0/a_48_9# p2 0.01fF
+C676 dff_1/a_64_49# gnd 0.09fF
+C677 p3 xor_3/w_3_39# 0.33fF
+C678 clk dff_10/w_3_39# 0.64fF
+C679 vdd s2_sync 0.45fF
+C680 c4_0/a_72_9# p3 0.01fF
+C681 vdd dff_5/a_33_9# 0.45fF
+C682 and_2/w_n6_53# b2 0.12fF
+C683 xor_1/a_36_6# b1 0.32fF
+C684 dff_2/inverter_0/w_0_n60# vdd 0.14fF
+C685 dff_1/a_16_9# dff_1/a_33_9# 0.17fF
+C686 xor_5/a_16_9# gnd 0.50fF
+C687 g0 p1 0.72fF
+C688 dff_5/a_16_9# vdd 0.03fF
+C689 s0_sync dff_8/inverter_0/w_0_n60# 0.08fF
+C690 clk b1_unsync 0.12fF
+C691 xor_2/a_16_9# xor_2/a_36_6# 0.07fF
+C692 vdd dff_9/a_64_49# 0.45fF
+C693 dff_11/a_64_49# dff_11/w_3_39# 0.08fF
+C694 s2 xor_4/w_3_39# 0.33fF
+C695 xor_4/a_16_9# xor_4/a_36_6# 0.07fF
+C696 c2_0/w_3_39# g1 0.12fF
+C697 a1 b0 0.01fF
+C698 dff_0/a_33_9# dff_0/a_16_9# 0.17fF
+C699 c2 vdd 0.45fF
+C700 s1 s2 0.21fF
+C701 dff_12/inverter_0/w_0_n60# c4_sync 0.08fF
+C702 vdd a3 1.09fF
+C703 clk dff_2/a_33_9# 0.11fF
+C704 dff_5/a_64_49# dff_5/inverter_0/w_0_n60# 0.09fF
+C705 p2 xor_4/a_54_9# 0.00fF
+C706 s2 dff_9/w_3_39# 0.30fF
+C707 xor_1/a_36_6# xor_1/a_16_9# 0.07fF
+C708 dff_0/inverter_0/w_0_n60# vdd 0.14fF
+C709 vdd dff_12/a_33_9# 0.45fF
+C710 s0 vdd 1.06fF
+C711 p3 a3 0.08fF
+C712 xor_3/a_16_9# xor_3/w_3_39# 0.16fF
+C713 a0_unsync gnd 0.06fF
+C714 dff_2/w_3_39# dff_2/a_64_49# 0.08fF
+C715 vdd dff_3/inverter_0/w_0_n60# 0.14fF
+C716 clk dff_8/a_33_9# 0.11fF
+C717 c4_0/a_48_9# c4_0/a_56_49# 0.08fF
+C718 c3 s3 0.08fF
+C719 s2 xor_4/a_16_9# 0.03fF
+C720 c3_0/a_48_9# g2 0.08fF
+C721 dff_7/a_64_49# gnd 0.09fF
+C722 a3_unsync clk 0.12fF
+C723 xor_1/a_32_9# b1 0.00fF
+C724 dff_11/inverter_0/w_0_n60# dff_11/a_64_49# 0.09fF
+C725 vdd s3 1.06fF
+C726 b3 and_3/a_7_63# 0.08fF
+C727 dff_12/w_3_39# dff_12/a_33_9# 0.21fF
+C728 s2 clk 0.12fF
+C729 vdd and_1/a_7_63# 0.86fF
+C730 vdd inv_2/a_13_n90# 0.50fF
+C731 g0 a0 0.11fF
+C732 c4_0/w_3_39# c4_0/a_32_49# 0.13fF
+C733 vdd dff_4/a_33_9# 0.45fF
+C734 and_3/a_7_3# Gnd 0.01fF
+C735 b3 Gnd 0.94fF
+C736 a3 Gnd 2.01fF
+C737 and_3/w_n6_53# Gnd 1.93fF
+C738 and_3/a_7_63# Gnd 0.29fF
+C739 and_3/inverter_0/w_0_n60# Gnd 1.51fF
+C740 and_2/a_7_3# Gnd 0.01fF
+C741 and_2/w_n6_53# Gnd 1.93fF
+C742 and_2/a_7_63# Gnd 0.29fF
+C743 and_2/inverter_0/w_0_n60# Gnd 1.51fF
+C744 and_1/a_7_3# Gnd 0.01fF
+C745 and_1/w_n6_53# Gnd 1.93fF
+C746 g1 Gnd 0.04fF
+C747 and_1/a_7_63# Gnd 0.29fF
+C748 and_1/inverter_0/w_0_n60# Gnd 1.51fF
+C749 and_0/a_7_3# Gnd 0.01fF
+C750 and_0/w_n6_53# Gnd 1.93fF
+C751 and_0/a_7_63# Gnd 0.29fF
+C752 and_0/inverter_0/w_0_n60# Gnd 1.51fF
+C753 dff_11/a_16_9# Gnd 0.20fF
+C754 dff_11/a_33_9# Gnd 0.18fF
+C755 dff_11/w_3_39# Gnd 4.34fF
+C756 s3_sync Gnd 0.54fF
+C757 dff_11/a_64_49# Gnd 0.25fF
+C758 dff_11/inverter_0/w_0_n60# Gnd 1.51fF
+C759 dff_12/a_16_9# Gnd 0.20fF
+C760 dff_12/a_33_9# Gnd 0.18fF
+C761 dff_12/w_3_39# Gnd 4.34fF
+C762 c4_sync Gnd 0.33fF
+C763 dff_12/a_64_49# Gnd 0.25fF
+C764 dff_12/inverter_0/w_0_n60# Gnd 1.51fF
+C765 dff_10/a_16_9# Gnd 0.20fF
+C766 dff_10/a_33_9# Gnd 0.18fF
+C767 dff_10/w_3_39# Gnd 4.34fF
+C768 s2_sync Gnd 0.54fF
+C769 dff_10/a_64_49# Gnd 0.25fF
+C770 dff_10/inverter_0/w_0_n60# Gnd 1.51fF
+C771 inv_4/a_13_n90# Gnd 0.09fF
+C772 inv_4/w_0_n60# Gnd 1.51fF
+C773 s3 Gnd 1.03fF
+C774 xor_6/a_36_6# Gnd 0.22fF
+C775 xor_6/a_16_9# Gnd 0.19fF
+C776 p3 Gnd 1.54fF
+C777 xor_6/w_3_39# Gnd 5.06fF
+C778 inv_3/a_13_n90# Gnd 0.09fF
+C779 inv_3/w_0_n60# Gnd 1.51fF
+C780 s1 Gnd 0.64fF
+C781 xor_5/a_36_6# Gnd 0.22fF
+C782 xor_5/a_16_9# Gnd 0.19fF
+C783 p1 Gnd 1.51fF
+C784 xor_5/w_3_39# Gnd 5.06fF
+C785 inv_2/a_13_n90# Gnd 0.09fF
+C786 inv_2/w_0_n60# Gnd 1.51fF
+C787 s2 Gnd 0.79fF
+C788 xor_4/a_36_6# Gnd 0.22fF
+C789 xor_4/a_16_9# Gnd 0.19fF
+C790 p2 Gnd 2.32fF
+C791 xor_4/w_3_39# Gnd 5.06fF
+C792 inv_1/a_13_n90# Gnd 0.09fF
+C793 inv_1/w_0_n60# Gnd 1.51fF
+C794 inv_0/a_13_n90# Gnd 0.09fF
+C795 inv_0/w_0_n60# Gnd 1.51fF
+C796 xor_3/a_36_6# Gnd 0.22fF
+C797 xor_3/a_16_9# Gnd 0.19fF
+C798 xor_3/w_3_39# Gnd 5.06fF
+C799 xor_2/a_36_6# Gnd 0.22fF
+C800 xor_2/a_16_9# Gnd 0.19fF
+C801 a2 Gnd 1.71fF
+C802 b2 Gnd 1.38fF
+C803 xor_2/w_3_39# Gnd 5.06fF
+C804 xor_1/a_36_6# Gnd 0.22fF
+C805 xor_1/a_16_9# Gnd 0.19fF
+C806 a1 Gnd 0.72fF
+C807 b1 Gnd 1.19fF
+C808 xor_1/w_3_39# Gnd 5.06fF
+C809 c3_0/a_24_9# Gnd 0.11fF
+C810 c3_0/a_16_9# Gnd 0.01fF
+C811 c3_0/w_3_39# Gnd 3.86fF
+C812 c3 Gnd 0.61fF
+C813 c3_0/a_48_9# Gnd 0.26fF
+C814 c3_0/inverter_0/w_0_n60# Gnd 1.51fF
+C815 xor_0/a_36_6# Gnd 0.22fF
+C816 xor_0/a_16_9# Gnd 0.19fF
+C817 b0 Gnd 1.45fF
+C818 xor_0/w_3_39# Gnd 5.06fF
+C819 dff_9/a_16_9# Gnd 0.20fF
+C820 dff_9/a_33_9# Gnd 0.18fF
+C821 dff_9/w_3_39# Gnd 4.34fF
+C822 s1_sync Gnd 0.54fF
+C823 dff_9/a_64_49# Gnd 0.25fF
+C824 dff_9/inverter_0/w_0_n60# Gnd 1.51fF
+C825 gnd Gnd 9.68fF
+C826 dff_8/a_16_9# Gnd 0.20fF
+C827 dff_8/a_33_9# Gnd 0.18fF
+C828 s0 Gnd 0.27fF
+C829 dff_8/w_3_39# Gnd 4.34fF
+C830 s0_sync Gnd 0.54fF
+C831 dff_8/a_64_49# Gnd 0.25fF
+C832 dff_8/inverter_0/w_0_n60# Gnd 1.51fF
+C833 dff_7/a_16_9# Gnd 0.20fF
+C834 dff_7/a_33_9# Gnd 0.18fF
+C835 b3_unsync Gnd 0.18fF
+C836 dff_7/w_3_39# Gnd 4.34fF
+C837 dff_7/a_64_49# Gnd 0.25fF
+C838 dff_7/inverter_0/w_0_n60# Gnd 1.51fF
+C839 dff_6/a_16_9# Gnd 0.20fF
+C840 dff_6/a_33_9# Gnd 0.18fF
+C841 a3_unsync Gnd 0.18fF
+C842 dff_6/w_3_39# Gnd 4.34fF
+C843 dff_6/a_64_49# Gnd 0.25fF
+C844 dff_6/inverter_0/w_0_n60# Gnd 1.51fF
+C845 dff_4/a_16_9# Gnd 0.20fF
+C846 dff_4/a_33_9# Gnd 0.18fF
+C847 a2_unsync Gnd 0.18fF
+C848 dff_4/w_3_39# Gnd 4.34fF
+C849 dff_4/a_64_49# Gnd 0.25fF
+C850 dff_4/inverter_0/w_0_n60# Gnd 1.51fF
+C851 dff_5/a_16_9# Gnd 0.20fF
+C852 dff_5/a_33_9# Gnd 0.18fF
+C853 b2_unsync Gnd 0.18fF
+C854 dff_5/w_3_39# Gnd 4.34fF
+C855 dff_5/a_64_49# Gnd 0.25fF
+C856 dff_5/inverter_0/w_0_n60# Gnd 1.51fF
+C857 dff_3/a_16_9# Gnd 0.20fF
+C858 dff_3/a_33_9# Gnd 0.18fF
+C859 b1_unsync Gnd 0.18fF
+C860 dff_3/w_3_39# Gnd 4.34fF
+C861 dff_3/a_64_49# Gnd 0.25fF
+C862 dff_3/inverter_0/w_0_n60# Gnd 1.51fF
+C863 dff_2/a_16_9# Gnd 0.20fF
+C864 dff_2/a_33_9# Gnd 0.18fF
+C865 a1_unsync Gnd 0.18fF
+C866 dff_2/w_3_39# Gnd 4.34fF
+C867 dff_2/a_64_49# Gnd 0.25fF
+C868 dff_2/inverter_0/w_0_n60# Gnd 1.51fF
+C869 dff_1/a_16_9# Gnd 0.20fF
+C870 dff_1/a_33_9# Gnd 0.18fF
+C871 b0_unsync Gnd 0.18fF
+C872 dff_1/w_3_39# Gnd 4.34fF
+C873 dff_1/a_64_49# Gnd 0.25fF
+C874 dff_1/inverter_0/w_0_n60# Gnd 1.51fF
+C875 dff_0/a_16_9# Gnd 0.20fF
+C876 dff_0/a_33_9# Gnd 0.18fF
+C877 a0_unsync Gnd 0.13fF
+C878 dff_0/w_3_39# Gnd 4.34fF
+C879 a0 Gnd 1.40fF
+C880 dff_0/a_64_49# Gnd 0.25fF
+C881 dff_0/inverter_0/w_0_n60# Gnd 1.51fF
+C882 c2_0/w_3_39# Gnd 2.41fF
+C883 c2 Gnd 0.74fF
+C884 c2_0/a_24_9# Gnd 0.26fF
+C885 c2_0/inverter_0/w_0_n60# Gnd 1.51fF
+C886 c4_0/a_48_9# Gnd 0.11fF
+C887 c4_0/a_24_9# Gnd 0.11fF
+C888 c4_0/a_16_9# Gnd 0.01fF
+C889 c4_0/w_3_39# Gnd 5.30fF
+C890 c4 Gnd 0.65fF
+C891 c4_0/a_72_9# Gnd 0.26fF
+C892 c4_0/inverter_0/w_0_n60# Gnd 1.51fF
+
+.tran 0.1ps 5ns
+
+.measure tran tplh_s0
++TRIG v(a0) VAL=0.9 RISE=1 
++TARG v(s0) VAL=0.9 RISE=1
+.measure tran tphl_s0
++TRIG v(a0) VAL=0.9 FALL=1 
++TARG v(s0) VAL=0.9 FALL=1
+.measure tran tp_s0 param = (tphl_s0 + tplh_s0)/2
+
+.control
+run
+set curplottitle="Hrishikesh-2024122006"
+*plot v(a0) 2+v(a1) 4+v(a2) 6+v(a3) 8+v(b0) 10+v(b1) 12+v(b2) 14+v(b3) 
+*plot v(s0) 2+v(s1) 4+v(s2) 6+v(s3) 8+v(c4)
+*plot v(g0) 2+v(c2) 4+v(c3) 6+v(c4)
+*plot @vdd[p]
+set hcopypscolor = 1
+
+*hardcopy q4.eps 
+.endc
+
+*tplh_s0             =  1.397462e-10 targ=  6.647462e-10 trig=  5.250000e-10
+*tphl_s0             =  1.308054e-10 targ=  1.705805e-09 trig=  1.575000e-09
+*tp_s0               =  1.35276e-10

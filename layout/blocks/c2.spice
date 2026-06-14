@@ -1,0 +1,50 @@
+* SPICE3 file created from c2.ext - technology: scmos
+
+.option scale=0.09u
+
+M1000 c2 a_24_9# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=440 ps=182
+M1001 c2 a_24_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=300 ps=150
+M1002 gnd g1 a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1003 a_9_49# p1 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1004 a_24_9# g1 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1005 a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1006 vdd g0 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1007 a_24_9# p1 a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 g0 vdd 0.13fF
+C1 a_9_49# vdd 0.95fF
+C2 w_3_39# g0 0.12fF
+C3 inverter_0/w_0_n60# vdd 0.14fF
+C4 a_24_9# a_9_49# 0.54fF
+C5 w_3_39# a_9_49# 0.12fF
+C6 a_24_9# inverter_0/w_0_n60# 0.09fF
+C7 g1 vdd 0.13fF
+C8 g0 p1 0.20fF
+C9 a_24_9# g1 0.08fF
+C10 p1 a_9_49# 0.08fF
+C11 a_24_9# vdd 0.03fF
+C12 w_3_39# g1 0.12fF
+C13 w_3_39# vdd 0.13fF
+C14 c2 inverter_0/w_0_n60# 0.08fF
+C15 a_24_9# w_3_39# 0.08fF
+C16 a_24_9# gnd 0.32fF
+C17 c2 vdd 0.45fF
+C18 p1 g1 0.20fF
+C19 p1 vdd 0.13fF
+C20 a_24_9# c2 0.05fF
+C21 w_3_39# p1 0.12fF
+C22 g0 a_9_49# 0.08fF
+C23 c2 gnd 0.24fF
+C24 gnd Gnd 0.40fF
+C25 vdd Gnd 0.01fF
+C26 w_3_39# Gnd 2.41fF
+C27 c2 Gnd 0.11fF
+C28 a_24_9# Gnd 0.26fF
+C29 inverter_0/w_0_n60# Gnd 1.51fF

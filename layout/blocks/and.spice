@@ -1,0 +1,45 @@
+* SPICE3 file created from and.ext - technology: scmos
+
+.option scale=0.09u
+
+M1000 gi a_7_63# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=600 ps=270
+M1001 gi a_7_63# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=300 ps=140
+M1002 a_7_63# bi a_7_3# Gnd CMOSN w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1003 a_7_3# ai gnd Gnd CMOSN w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1004 a_7_63# ai vdd w_n6_53# CMOSP w=40 l=2
++  ad=199 pd=73 as=0 ps=0
+M1005 vdd bi a_7_63# w_n6_53# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 ai vdd 0.13fF
+C1 inverter_0/w_0_n60# a_7_63# 0.09fF
+C2 a_7_63# gnd 0.11fF
+C3 a_7_63# a_7_3# 0.47fF
+C4 a_7_63# bi 0.08fF
+C5 w_n6_53# bi 0.12fF
+C6 inverter_0/w_0_n60# gi 0.08fF
+C7 gi gnd 0.24fF
+C8 a_7_63# vdd 0.86fF
+C9 w_n6_53# ai 0.12fF
+C10 w_n6_53# vdd 0.20fF
+C11 a_7_3# gnd 0.47fF
+C12 gnd bi 0.02fF
+C13 gi vdd 0.45fF
+C14 a_7_63# w_n6_53# 0.04fF
+C15 inverter_0/w_0_n60# vdd 0.14fF
+C16 ai gnd 0.02fF
+C17 ai bi 0.20fF
+C18 bi vdd 0.13fF
+C19 a_7_63# gi 0.05fF
+C20 a_7_3# Gnd 0.01fF
+C21 gnd Gnd 0.41fF
+C22 vdd Gnd 0.04fF
+C23 bi Gnd 0.07fF
+C24 ai Gnd 0.07fF
+C25 w_n6_53# Gnd 1.38fF
+C26 gi Gnd 0.11fF
+C27 a_7_63# Gnd 0.29fF
+C28 inverter_0/w_0_n60# Gnd 1.51fF

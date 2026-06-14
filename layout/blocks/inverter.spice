@@ -1,0 +1,20 @@
+* SPICE3 file created from inverter.ext - technology: scmos
+
+.option scale=0.09u
+
+M1000 a_13_n90# a_7_n67# a_6_n50# w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=200 ps=90
+M1001 a_13_n90# a_7_n67# a_6_n90# Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=100 ps=50
+C0 a_13_n90# a_6_n50# 0.45fF
+C1 w_0_n60# a_7_n67# 0.09fF
+C2 a_7_n67# a_6_n90# 0.05fF
+C3 w_0_n60# a_6_n50# 0.14fF
+C4 w_0_n60# a_13_n90# 0.08fF
+C5 a_13_n90# a_6_n90# 0.24fF
+C6 a_13_n90# a_7_n67# 0.05fF
+C7 a_6_n90# Gnd 0.15fF
+C8 a_13_n90# Gnd 0.09fF
+C9 a_6_n50# Gnd 0.03fF
+C10 a_7_n67# Gnd 0.16fF
+C11 w_0_n60# Gnd 1.51fF

@@ -1,0 +1,436 @@
+.include TSMC_180nm.txt
+
+.param LAMBDA=0.09u
+.param W=20*LAMBDA
+.param width_N=W
+.param width_P=2*W
+.global gnd vdd
+.option scale=0.09u
+
+Vdd vdd gnd 1.8
+
+Vin_a0 a0 gnd PULSE(0 1.8 0.5ns 50ps 50ps 3ns 4ns 0)
+Vin_a1 a1 gnd PULSE(0 1.8 0.5ns 50ps 50ps 3ns 4ns 0)
+Vin_a2 a2 gnd PULSE(0 1.8 0.5ns 50ps 50ps 3ns 4ns 0)
+Vin_a3 a3 gnd PULSE(0 1.8 0.5ns 50ps 50ps 3ns 4ns 0)
+
+Vin_b0 b0 gnd PULSE(0 1.8 1.25ns 50ps 50ps 1ns 2ns 0)
+Vin_b1 b1 gnd 0V
+Vin_b2 b2 gnd PULSE(0 1.8 0.5ns 50ps 50ps 3ns 4ns 0)
+Vin_b3 b3 gnd PULSE(0 1.8 0.5ns 50ps 50ps 3ns 4ns 0)
+
+
+
+.subckt inv in out vdd gnd S=1
+M1000 out in vdd w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=200 ps=90
+M1001 out in gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=100 ps=50
+C0 out w_0_n60# 0.08fF
+C1 out gnd 0.24fF
+C2 in w_0_n60# 0.09fF
+C3 in gnd 0.05fF
+C4 out in 0.05fF
+C5 vdd w_0_n60# 0.14fF
+C6 vdd out 0.45fF
+C7 gnd Gnd 0.15fF
+C8 out Gnd 0.09fF
+C9 vdd Gnd 0.03fF
+C10 in Gnd 0.16fF
+C11 w_0_n60# Gnd 1.48fF
+.ends inv
+
+
+
+.subckt g_calc ai bi gi vdd gnd S=1 
+M1000 gi a_7_63# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=600 ps=270
+M1001 gi a_7_63# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=300 ps=140
+M1002 a_7_63# bi a_7_3# Gnd CMOSN w=40 l=2
++  ad=200 pd=90 as=240 ps=92
+M1003 a_7_3# ai gnd Gnd CMOSN w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1004 a_7_63# ai vdd w_n6_53# CMOSP w=40 l=2
++  ad=199 pd=73 as=0 ps=0
+M1005 vdd bi a_7_63# w_n6_53# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 ai vdd 0.13fF
+C1 inverter_0/w_0_n60# a_7_63# 0.09fF
+C2 a_7_63# gnd 0.11fF
+C3 a_7_63# a_7_3# 0.47fF
+C4 a_7_63# bi 0.08fF
+C5 w_n6_53# bi 0.12fF
+C6 inverter_0/w_0_n60# gi 0.08fF
+C7 gi gnd 0.24fF
+C8 a_7_63# vdd 0.86fF
+C9 w_n6_53# ai 0.12fF
+C10 w_n6_53# vdd 0.20fF
+C11 a_7_3# gnd 0.47fF
+C12 gnd bi 0.02fF
+C13 gi vdd 0.45fF
+C14 a_7_63# w_n6_53# 0.04fF
+C15 inverter_0/w_0_n60# vdd 0.14fF
+C16 ai gnd 0.02fF
+C17 ai bi 0.20fF
+C18 bi vdd 0.13fF
+C19 a_7_63# gi 0.05fF
+C20 a_7_3# Gnd 0.01fF
+C21 gnd Gnd 0.41fF
+C22 vdd Gnd 0.04fF
+C23 bi Gnd 0.07fF
+C24 ai Gnd 0.07fF
+C25 w_n6_53# Gnd 1.38fF
+C26 gi Gnd 0.11fF
+C27 a_7_63# Gnd 0.29fF
+C28 inverter_0/w_0_n60# Gnd 1.51fF
+.ends g_calc
+
+
+
+.subckt pi_calc ai bi pi vdd gnd S=1 
+M1000 a_32_9# a_16_9# gnd Gnd CMOSN w=20 l=2
++  ad=80 pd=48 as=400 ps=200
+M1001 pi bi a_54_9# Gnd CMOSN w=20 l=2
++  ad=200 pd=100 as=80 ps=48
+M1002 vdd bi a_36_6# w_3_39# CMOSP w=40 l=2
++  ad=800 pd=360 as=200 ps=90
+M1003 a_54_9# ai gnd Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1004 a_54_49# ai vdd w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1005 pi a_36_6# a_54_49# w_3_39# CMOSP w=40 l=2
++  ad=400 pd=180 as=0 ps=0
+M1006 a_32_49# a_16_9# vdd w_3_39# CMOSP w=40 l=2
++  ad=160 pd=88 as=0 ps=0
+M1007 a_16_9# ai gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=0 ps=0
+M1008 gnd bi a_36_6# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=100 ps=50
+M1009 pi bi a_32_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1010 a_16_9# ai vdd w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1011 pi a_36_6# a_32_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 w_3_39# bi 0.22fF
+C1 a_16_9# pi 0.03fF
+C2 bi a_36_6# 0.23fF
+C3 ai a_16_9# 0.07fF
+C4 bi gnd 0.05fF
+C5 w_3_39# a_16_9# 0.16fF
+C6 vdd pi 0.50fF
+C7 a_16_9# a_36_6# 0.07fF
+C8 w_3_39# vdd 0.47fF
+C9 a_16_9# gnd 0.50fF
+C10 ai pi 0.08fF
+C11 vdd a_36_6# 0.64fF
+C12 w_3_39# pi 0.33fF
+C13 w_3_39# ai 0.18fF
+C14 a_36_6# pi 1.37fF
+C15 ai a_36_6# 0.16fF
+C16 gnd pi 0.27fF
+C17 ai gnd 0.63fF
+C18 w_3_39# a_36_6# 0.66fF
+C19 a_36_6# gnd 0.24fF
+C20 bi a_16_9# 0.04fF
+C21 vdd bi 0.15fF
+C22 bi pi 0.09fF
+C23 bi ai 0.03fF
+C24 vdd a_16_9# 0.86fF
+C25 gnd Gnd 0.42fF
+C26 pi Gnd 0.31fF
+C27 vdd Gnd 0.03fF
+C28 a_36_6# Gnd 0.22fF
+C29 a_16_9# Gnd 0.19fF
+C30 ai Gnd 0.51fF
+C31 bi Gnd 0.00fF
+C32 w_3_39# Gnd 4.98fF
+.ends pi_calc
+
+
+
+
+.subckt c2_calc p1 g0 g1 c2 vdd gnd S=1 
+M1000 c2 a_24_9# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=440 ps=182
+M1001 c2 a_24_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=300 ps=150
+M1002 gnd g1 a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1003 a_9_49# p1 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1004 a_24_9# g1 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1005 a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1006 vdd g0 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1007 a_24_9# p1 a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 g0 vdd 0.13fF
+C1 a_9_49# vdd 0.95fF
+C2 w_3_39# g0 0.12fF
+C3 inverter_0/w_0_n60# vdd 0.14fF
+C4 a_24_9# a_9_49# 0.54fF
+C5 w_3_39# a_9_49# 0.12fF
+C6 a_24_9# inverter_0/w_0_n60# 0.09fF
+C7 g1 vdd 0.13fF
+C8 g0 p1 0.20fF
+C9 a_24_9# g1 0.08fF
+C10 p1 a_9_49# 0.08fF
+C11 a_24_9# vdd 0.03fF
+C12 w_3_39# g1 0.12fF
+C13 w_3_39# vdd 0.13fF
+C14 c2 inverter_0/w_0_n60# 0.08fF
+C15 a_24_9# w_3_39# 0.08fF
+C16 a_24_9# gnd 0.32fF
+C17 c2 vdd 0.45fF
+C18 p1 g1 0.20fF
+C19 p1 vdd 0.13fF
+C20 a_24_9# c2 0.05fF
+C21 w_3_39# p1 0.12fF
+C22 g0 a_9_49# 0.08fF
+C23 c2 gnd 0.24fF
+C24 gnd Gnd 0.40fF
+C25 vdd Gnd 0.01fF
+C26 w_3_39# Gnd 2.41fF
+C27 c2 Gnd 0.11fF
+C28 a_24_9# Gnd 0.26fF
+C29 inverter_0/w_0_n60# Gnd 1.51fF
+.ends c2_calc
+
+
+
+.subckt c3_calc p1 p2 g0 g1 g2 c3 vdd gnd S=1 
+M1000 c3 a_48_9# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=640 ps=272
+M1001 c3 a_48_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=400 ps=200
+M1002 a_48_9# p2 a_24_9# Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=220 ps=102
+M1003 gnd g1 a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1004 a_9_49# p1 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1005 gnd g2 a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1006 a_32_49# p2 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1007 a_32_49# g1 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1008 a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1009 vdd g0 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1010 a_48_9# g2 a_32_49# w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=0 ps=0
+M1011 a_24_9# p1 a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 p1 g0 0.20fF
+C1 inverter_0/w_0_n60# a_48_9# 0.09fF
+C2 a_48_9# g2 0.08fF
+C3 a_48_9# a_24_9# 0.28fF
+C4 g1 p1 0.20fF
+C5 vdd g0 0.13fF
+C6 vdd p1 0.13fF
+C7 a_9_49# g0 0.08fF
+C8 vdd c3 0.45fF
+C9 p2 a_32_49# 0.08fF
+C10 vdd a_32_49# 0.95fF
+C11 a_9_49# p1 0.08fF
+C12 vdd g1 0.13fF
+C13 a_9_49# a_32_49# 0.48fF
+C14 inverter_0/w_0_n60# c3 0.08fF
+C15 vdd p2 0.13fF
+C16 a_48_9# w_3_39# 0.08fF
+C17 a_24_9# a_32_49# 0.08fF
+C18 vdd a_9_49# 0.95fF
+C19 a_24_9# g1 0.08fF
+C20 a_48_9# gnd 0.35fF
+C21 inverter_0/w_0_n60# vdd 0.14fF
+C22 g2 p2 0.20fF
+C23 vdd g2 0.13fF
+C24 w_3_39# g0 0.12fF
+C25 a_24_9# a_9_49# 0.03fF
+C26 p1 w_3_39# 0.12fF
+C27 w_3_39# a_32_49# 0.13fF
+C28 g1 w_3_39# 0.12fF
+C29 gnd c3 0.24fF
+C30 a_24_9# a_16_9# 0.21fF
+C31 p2 w_3_39# 0.12fF
+C32 vdd w_3_39# 0.25fF
+C33 a_9_49# w_3_39# 0.12fF
+C34 g2 w_3_39# 0.12fF
+C35 a_24_9# gnd 0.53fF
+C36 a_16_9# gnd 0.24fF
+C37 a_48_9# c3 0.05fF
+C38 a_48_9# a_32_49# 0.51fF
+C39 a_48_9# vdd 0.03fF
+C40 a_24_9# Gnd 0.11fF
+C41 a_16_9# Gnd 0.01fF
+C42 gnd Gnd 0.51fF
+C43 w_3_39# Gnd 3.86fF
+C44 c3 Gnd 0.10fF
+C45 a_48_9# Gnd 0.26fF
+C46 inverter_0/w_0_n60# Gnd 1.51fF
+.ends c3_calc
+
+
+
+.subckt c4_calc p1 p2 p3 g0 g1 g2 g3 c4 vdd gnd S=1 
+M1000 c4 a_72_9# vdd inverter_0/w_0_n60# CMOSP w=40 l=2
++  ad=200 pd=90 as=840 ps=362
+M1001 c4 a_72_9# gnd Gnd CMOSN w=20 l=2
++  ad=100 pd=50 as=500 ps=250
+M1002 a_72_9# g3 a_56_49# w_3_39# CMOSP w=40 l=2
++  ad=200 pd=90 as=440 ps=182
+M1003 a_48_9# p2 a_24_9# Gnd CMOSN w=20 l=2
++  ad=220 pd=102 as=220 ps=102
+M1004 gnd g1 a_24_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1005 a_9_49# p1 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1006 gnd g2 a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1007 a_32_49# p2 vdd w_3_39# CMOSP w=40 l=2
++  ad=440 pd=182 as=0 ps=0
+M1008 gnd g3 a_72_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+M1009 a_32_49# g1 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1010 a_56_49# p3 vdd w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1011 a_16_9# g0 gnd Gnd CMOSN w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+M1012 vdd g0 a_9_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1013 a_56_49# g2 a_32_49# w_3_39# CMOSP w=40 l=2
++  ad=0 pd=0 as=0 ps=0
+M1014 a_72_9# p3 a_48_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+M1015 a_24_9# p1 a_16_9# Gnd CMOSN w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 a_16_9# a_24_9# 0.21fF
+C1 p2 vdd 0.13fF
+C2 a_56_49# w_3_39# 0.13fF
+C3 a_72_9# a_48_9# 0.28fF
+C4 p1 vdd 0.13fF
+C5 a_56_49# a_48_9# 0.08fF
+C6 p1 g0 0.20fF
+C7 a_32_49# a_9_49# 0.48fF
+C8 inverter_0/w_0_n60# c4 0.08fF
+C9 g3 vdd 0.13fF
+C10 a_72_9# gnd 0.35fF
+C11 g1 w_3_39# 0.12fF
+C12 g0 vdd 0.13fF
+C13 a_24_9# g1 0.08fF
+C14 a_16_9# gnd 0.24fF
+C15 w_3_39# g2 0.12fF
+C16 a_72_9# vdd 0.03fF
+C17 w_3_39# a_9_49# 0.12fF
+C18 a_24_9# a_9_49# 0.03fF
+C19 a_72_9# g3 0.08fF
+C20 a_32_49# w_3_39# 0.13fF
+C21 a_56_49# vdd 0.95fF
+C22 a_24_9# a_32_49# 0.08fF
+C23 a_48_9# g2 0.08fF
+C24 p2 g2 0.20fF
+C25 a_32_49# a_48_9# 0.03fF
+C26 a_72_9# a_56_49# 0.51fF
+C27 w_3_39# p3 0.12fF
+C28 p1 g1 0.20fF
+C29 a_32_49# p2 0.08fF
+C30 p1 a_9_49# 0.08fF
+C31 inverter_0/w_0_n60# vdd 0.14fF
+C32 g1 vdd 0.13fF
+C33 a_24_9# a_48_9# 0.28fF
+C34 w_3_39# p2 0.12fF
+C35 g2 vdd 0.13fF
+C36 a_9_49# vdd 0.95fF
+C37 a_72_9# inverter_0/w_0_n60# 0.09fF
+C38 a_32_49# vdd 0.95fF
+C39 p1 w_3_39# 0.12fF
+C40 g0 a_9_49# 0.08fF
+C41 c4 gnd 0.24fF
+C42 p3 vdd 0.13fF
+C43 c4 vdd 0.45fF
+C44 a_24_9# gnd 0.53fF
+C45 w_3_39# vdd 0.37fF
+C46 a_32_49# a_56_49# 0.48fF
+C47 p3 g3 0.20fF
+C48 w_3_39# g3 0.12fF
+C49 a_48_9# gnd 0.53fF
+C50 a_72_9# c4 0.05fF
+C51 w_3_39# g0 0.12fF
+C52 a_72_9# w_3_39# 0.08fF
+C53 a_56_49# p3 0.08fF
+C54 a_48_9# Gnd 0.11fF
+C55 a_24_9# Gnd 0.11fF
+C56 a_16_9# Gnd 0.01fF
+C57 gnd Gnd 0.62fF
+C58 w_3_39# Gnd 5.30fF
+C59 c4 Gnd 0.11fF
+C60 a_72_9# Gnd 0.25fF
+C61 inverter_0/w_0_n60# Gnd 1.51fF
+.ends c4_calc
+
+
+
+x1 a0 b0 p0 vdd gnd pi_calc
+x2 a1 b1 p1 vdd gnd pi_calc
+x3 a2 b2 p2 vdd gnd pi_calc
+x4 a3 b3 p3 vdd gnd pi_calc
+
+x5 a0 b0 g0 vdd gnd g_calc
+x6 a1 b1 g1 vdd gnd g_calc
+x7 a2 b2 g2 vdd gnd g_calc
+x8 a3 b3 g3 vdd gnd g_calc
+
+x10 p1 g0 g1 c2 vdd gnd c2_calc
+x11 p1 p2 g0 g1 g2 c3 vdd gnd c3_calc
+x12 p1 p2 p3 g0 g1 g2 g3 c4 vdd gnd c4_calc
+
+R1 p0 s0 0
+x13 g0 p1 s1 vdd gnd pi_calc
+x14 c2 p2 s2 vdd gnd pi_calc
+x15 c3 p3 s3 vdd gnd pi_calc
+
+x16 s0 nc1 vdd gnd inv
+x17 s1 nc2 vdd gnd inv
+x18 s2 nc3 vdd gnd inv
+x19 s3 nc4 vdd gnd inv
+x20 c4 nc5 vdd gnd inv
+
+x21 s0 nc1 vdd gnd inv
+x22 s1 nc2 vdd gnd inv
+x23 s2 nc3 vdd gnd inv
+x24 s3 nc4 vdd gnd inv
+x25 c4 nc5 vdd gnd inv
+
+.tran 0.1ps 5ns
+
+.measure tran tplh_s2
++TRIG v(b0) VAL=0.9 RISE=1 
++TARG v(s2) VAL=0.9 RISE=1
+.measure tran tphl_s2
++TRIG v(b0) VAL=0.9 FALL=1 
++TARG v(s2) VAL=0.9 FALL=1
+.measure tran tp_s2 param = (tphl_s2 + tplh_s2)/2
+
+.control
+run
+set curplottitle="Hrishikesh-2024122006"
+*plot v(a0) 2+v(a1) 4+v(a2) 6+v(a3) 8+v(b0) 10+v(b1) 12+v(b2) 14+v(b3) 
+*plot v(s0) 2+v(s1) 4+v(s2) 6+v(s3) 8+v(c4)
+*plot v(g0) 2+v(c2) 4+v(c3) 6+v(c4)
+*plot @vdd[p]
+set hcopypscolor = 1
+
+*hardcopy q4.eps 
+.endc
+
+
+*tplh_s2             =  4.571086e-10 targ=  1.732109e-09 trig=  1.275000e-09
+*tphl_s2             =  4.766156e-10 targ=  2.801616e-09 trig=  2.325000e-09
+*tp_s2               =  4.66862e-10

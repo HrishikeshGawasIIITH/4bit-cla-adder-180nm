@@ -1,0 +1,65 @@
+.include TSMC_180nm.txt
+
+.param LAMBDA=0.09u
+.param width_N=40*LAMBDA
+.param width_P=width_N
+.param width_N_inv=20*LAMBDA
+.param width_P_inv=2*width_N
+.global gnd vdd
+
+Vdd vdd gnd 1.8
+
+Vin_a0 a0 gnd pwl(0 0V 2ns 0V 2.05ns 1.8V 3ns 1.8V 3.05ns 0V)
+Vin_a1 a1 gnd pwl(0 0V 1ns 0V 1.05ns 1.8V)
+
+.subckt g_calc ai bi gi vdd gnd S=1 
+M1 gibar bi vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+M2 gibar ai vdd vdd CMOSP W={S*width_P} L={2*LAMBDA} 
++AS={S*5*width_P*LAMBDA} PS={10*LAMBDA+S*2*width_P} 
++AD={S*5*width_P*LAMBDA} PD={10*LAMBDA+S*2*width_P}
+
+M3 gibar bi gi_temp gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+M4 gi_temp ai gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N*LAMBDA} PS={10*LAMBDA+S*2*width_N} 
++AD={S*5*width_N*LAMBDA} PD={10*LAMBDA+S*2*width_N}
+
+M5 gi gibar vdd vdd CMOSP W={S*width_P_inv} L={2*LAMBDA} 
++AS={S*5*width_P_inv*LAMBDA} PS={10*LAMBDA+S*2*width_P_inv} 
++AD={S*5*width_P_inv*LAMBDA} PD={10*LAMBDA+S*2*width_P_inv}
+M6 gi gibar gnd gnd CMOSN W={S*width_N} L={2*LAMBDA} 
++AS={S*5*width_N_inv*LAMBDA} PS={10*LAMBDA+S*2*width_N_inv} 
++AD={S*5*width_N_inv*LAMBDA} PD={10*LAMBDA+S*2*width_N_inv}
+.ends g_calc
+
+x1 a0 a1 g0 vdd gnd g_calc
+
+.tran 0.1ps 5ns
+
+.measure tran tplh_and
++TRIG v(a0) VAL=0.9 RISE=1 
++TARG v(g0) VAL=0.9 RISE=1
+
+.measure tran tphl_and
++TRIG v(a0) VAL=0.9 FALL=1 
++TARG v(g0) VAL=0.9 FALL=1
+
+.measure tran tp_and param = (tplh_and + tphl_and)/2
+
+.measure tran rms_curr RMS i(vdd)
+.measure tran avg_power param = (rms_curr*1.8)
+
+.control
+run
+set curplottitle="Hrishikesh-2024122006-3_and"
+plot v(a0) 2+v(a1) 4+v(g0) 
+.endc
+
+*tplh_and            =  8.050969e-11 targ=  2.105510e-09 trig=  2.025000e-09
+*tphl_and            =  1.064478e-10 targ=  3.131448e-09 trig=  3.025000e-09
+*tp_and              =  9.34787e-11
+*rms_curr            =   1.42458e-04 from=  0.00000e+00 to=  5.00000e-09
+*avg_power           =  2.56424e-04
