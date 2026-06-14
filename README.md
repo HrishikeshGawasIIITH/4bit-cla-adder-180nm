@@ -151,7 +151,7 @@ I saw glitches right at 736 ps, so I picked **800 ps (1.25 GHz)** as the reliabl
 
 I also described the same circuit structurally in Verilog — gate primitives for the CLA, a parameterised D flip-flop for the registers, and an on-chip clock divider (built from T flip-flops) that walks through all 256 input combinations so the adder can be exercised exhaustively. Verified in GTKWave.
 
-<p align="center"><img src="docs/images/verilog_gtkwave.png" width="640"></p>
+![GTKWave verification of the structural Verilog](docs/images/verilog_gtkwave.png)
 
 → RTL: [`verilog/rtl/`](verilog/rtl/) · Testbench: [`verilog/tb/`](verilog/tb/)
 
