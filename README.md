@@ -4,7 +4,7 @@ A full-custom 4-bit Carry Look-Ahead (CLA) adder I designed end-to-end in **180 
 
 This was my VLSI Design course project at IIIT Hyderabad. I'm putting it up as a single, organised repository so the whole flow — schematic → layout → post-layout → RTL → hardware — can be followed in one place.
 
-## Headline results
+## Final Performance
 
 | Metric | Value |
 |---|---|
@@ -31,7 +31,7 @@ sᵢ = Aᵢ ⊕ Bᵢ ⊕ Cᵢ
 
 So all carries are produced in parallel instead of rippling, which is where the speed comes from.
 
-![Gate-level architecture of the 4-bit CLA adder](docs/images/architecture_gate_level.jpg)
+<p align="center"><img src="docs/images/architecture_gate_level.jpg" width="460"></p>
 
 The inputs and outputs are registered by TSPC D flip-flops so the whole block behaves as one synchronous stage: inputs are latched on a clock edge, and the result is available at the next edge.
 
@@ -39,7 +39,7 @@ The inputs and outputs are registered by TSPC D flip-flops so the whole block be
 
 ## Design flow (what I did, step by step)
 
-### 1–2. Logic design, topology and sizing
+### 1–2. Logic design and topology
 
 I implemented each `Gᵢ` as an AND gate and each `Pᵢ` as an XOR gate, then built the carry equations above as static CMOS complex gates. Each sum bit drives an output inverter (Wp/Wn = 20λ/10λ).
 
@@ -48,17 +48,26 @@ I implemented each `Gᵢ` as an AND gate and each `Pᵢ` as an XOR gate, then bu
 | ![P/G gates](docs/images/schematic_pg_gates.jpg) | ![C4 carry gate](docs/images/schematic_c4_carry.jpg) |
 | Generate (AND) and Propagate (XOR) gates | Static CMOS complex gate for the C4 carry |
 
-For sizing I went with a symmetric **2W/W** ratio for almost every module — this kept the layout regular and let me build clean Euler-path stick diagrams later. I only deviated for the AND gate (2W/2W gave the best delay). The XOR was marginally faster at 4W/W, but the improvement was small and not worth breaking layout symmetry, so it stayed at 2W/W.
-
 The registers use a TSPC D flip-flop. I chose TSPC because it needs only a single clock (no complementary clock distribution), which keeps the clock network simple and the load light.
 
-![TSPC D flip-flop schematic](docs/images/schematic_tspc_dff.jpg)
+<p align="center"><img src="docs/images/schematic_tspc_dff.jpg" width="460"></p>
 
-### 3. Block-level functional simulation (NGSPICE)
+### 3. Sizing and layout-design strategy
+
+I used a **modified Euler-path approach** for the layouts, and sized the transistors conservatively against the propagation delay each option gave:
+
+- **Most modules were best with a constant 2W/W ratio**, so I kept that as the default. This deliberately keeps the cells equi-sized and symmetric, which is what makes a clean Euler-path layout possible.
+- The **AND gate** was the one exception — its theoretical 2W/2W sizing performed best, so AND uses 2W/2W.
+- The **XOR gate** was marginally faster at 4W/W, but the delay improvement was very small, so I kept it at 2W/W to preserve the symmetric layout.
+- The **TSPC flip-flop showed no improvement** from increasing size or ratio, so I used a small 2W/W to add as little load as possible on the clock signal.
+
+An Euler path is a walk through the transistor graph that uses every edge exactly once (an Euler *circuit* starts and ends at the same vertex). I built Euler paths for all modules, but in doing so only one transistor of the pull-up/pull-down network ends up touching VDD/GND. That raises the rise/fall time, which is critical to delay. To fix it I **split the larger gates into smaller diffusion regions** with more supply contacts, lowering the supply resistance and improving the edges.
+
+### 4. Block-level functional simulation (NGSPICE)
 
 I wrote a SPICE netlist for each module and verified its truth table under a realistic load. Delay and RMS power were measured for every block.
 
-![XOR block simulation](docs/images/sim_xor_block.png)
+<p align="center"><img src="docs/images/sim_xor_block.png" width="520"></p>
 
 | Module | Delay (s) | RMS Power (W) |
 |---|---|---|
@@ -71,58 +80,59 @@ I wrote a SPICE netlist for each module and verified its truth table under a rea
 
 → Netlists: [`spice/blocks/`](spice/blocks/), [`spice/delay_power/`](spice/delay_power/)
 
-### 4. Flip-flop timing (setup, hold, clock-to-Q)
+### 5. Flip-flop timing (setup, hold, clock-to-Q)
 
-I characterised the TSPC flip-flop by sweeping the data edge against the clock edge and finding the point just before the output corrupts. This gave me setup time, hold time and the clock-to-Q delay (`tpcq`) for both transitions.
+I characterised the TSPC flip-flop by sweeping the data edge against the clock edge and finding the point just before the output corrupts. This gave me the setup time, hold time and clock-to-Q delay. The final characterised values:
 
-![Clock-to-Q delay measurement](docs/images/dff_clk_to_q.png)
+| t_setup | t_hold | t_pcq |
+|---|---|---|
+| 50 ps | 30 ps | 118 ps |
 
-| Transition | t_setup | t_hold | t_pcq |
-|---|---|---|---|
-| Low → High | 24 ps | 40 ps | 8.95 × 10⁻¹¹ s |
-| High → Low | 50 ps | 30 ps | 1.47 × 10⁻¹⁰ s |
+<p align="center"><img src="docs/images/dff_clk_to_q.png" width="520"></p>
 
 → Netlist: [`spice/dff_timing/dff_fused.cir`](spice/dff_timing/dff_fused.cir)
 
-### 5. Stick diagrams
+### 6. Stick diagrams
 
 Before drawing the layout I made Euler-path-based stick diagrams for every unique gate so that the diffusion strips were continuous and the cells stayed compact and regular.
 
-![XOR stick diagram](docs/images/stick_xor.jpg)
+<p align="center"><img src="docs/images/stick_xor.jpg" width="460"></p>
 
 *(All stick diagrams — AND, XOR, C2, C3/C4, DFF, inverter — are in the [report](docs/report.pdf).)*
 
-### 6. Block-level layout + post-layout verification (MAGIC)
+### 7. Block-level layout + post-layout verification (MAGIC)
 
-I laid out each block in MAGIC using the `SCN6M_DEEP.09` tech file, then extracted parasitics and re-simulated. One thing I learned here: when a whole gate is squeezed into a single diffusion area, only one transistor touches VDD/GND, which hurts the rise/fall time. So I deliberately split larger gates into smaller diffusion regions with more supply contacts to lower resistance.
+I laid out each block in MAGIC using the `SCN6M_DEEP.09` tech file, then extracted parasitics and re-simulated. As noted in the sizing strategy, gates that would have sat in a single diffusion area were split into smaller regions with more VDD/GND contacts to lower resistance and keep the edges fast.
 
-![C4 block layout](docs/images/layout_c4_block.png)
+<p align="center"><img src="docs/images/layout_c4_block.png" width="520"></p>
 
 The post-layout delays tracked the schematic closely for most blocks — the comparison tables are in the [report](docs/report.pdf).
 
 → Layouts: [`layout/blocks/`](layout/blocks/) · Extracted sims: [`post_layout_sim/block_wise/`](post_layout_sim/block_wise/)
 
-### 7. Full-circuit integration
+### 8. Full-circuit integration
 
 I stitched all the blocks together — input flip-flops → P/G → carry logic → sum → output flip-flops — into one netlist and verified the complete synchronous adder in NGSPICE.
 
-![Full schematic](docs/images/full_schematic.png)
+<p align="center"><img src="docs/images/full_schematic.png" width="560"></p>
 
-![Full circuit output waveforms](docs/images/sim_full_circuit_outputs.png)
+<p align="center"><img src="docs/images/sim_full_circuit_outputs.png" width="560"></p>
 
 In the waveforms, `a0_unsync…` are the raw test inputs, `a0…` are the registered CLA inputs, `c4,s3…s0` are the CLA outputs, and `…_sync` are the final registered outputs.
 
 → Netlists: [`spice/integrated/`](spice/integrated/)
 
-### 8. Floor plan
+### 9. Floor plan
 
 I planned the placement of all 16 flip-flops and the combinational blocks so the regular structures lined up, and identified the horizontal/vertical pitches.
 
-![Floor plan](docs/images/floor_plan.png)
+<p align="center"><img src="docs/images/floor_plan.png" width="480"></p>
 
-### 9–10. Full-chip layout, extraction and timing
+### 10. Full-chip layout, extraction and timing
 
-I assembled the complete layout, extracted the parasitic netlist, and repeated every simulation on it. The worst case path is `a0 → s3`. From the extracted netlist:
+I assembled the complete layout, extracted the parasitic netlist, and repeated every simulation on it.
+
+**Finding the worst-case delay:** the worst-case delay is obtained on the critical path. I keep the inputs to all other paths constant, and choose the inputs so that toggling only the critical-path input changes the critical-path output. The rise and fall propagation delays are then noted. For this design the critical path is `a0 → s3`. From the extracted netlist:
 
 ```
 t_CLK ≥ t_p + t_setup + t_pcq = 532 + 30 + 174 = 736 ps
@@ -141,7 +151,7 @@ I saw glitches right at 736 ps, so I picked **800 ps (1.25 GHz)** as the reliabl
 
 I also described the same circuit structurally in Verilog — gate primitives for the CLA, a parameterised D flip-flop for the registers, and an on-chip clock divider (built from T flip-flops) that walks through all 256 input combinations so the adder can be exercised exhaustively. Verified in GTKWave.
 
-![GTKWave verification](docs/images/verilog_gtkwave.png)
+<p align="center"><img src="docs/images/verilog_gtkwave.png" width="640"></p>
 
 → RTL: [`verilog/rtl/`](verilog/rtl/) · Testbench: [`verilog/tb/`](verilog/tb/)
 
@@ -165,23 +175,22 @@ Finally I put the design on a Boolean Board FPGA. The internal clock divider dri
 ├── docs/
 │   ├── report.pdf                 # full project report
 │   ├── problem_statement.pdf      # original assignment
-│   ├── references/                # cited papers
 │   ├── report_source/             # LaTeX source + all figures
 │   └── images/                    # figures used in this README
 ├── spice/
 │   ├── models/                    # TSMC 180 nm model card
-│   ├── blocks/                    # per-block functional netlists  (Task 3)
-│   ├── dff_timing/                # setup/hold/clk-to-Q            (Task 4)
-│   ├── integrated/                # full adder netlist             (Task 7)
-│   └── delay_power/               # per-output delay + power       (Tasks 3,10)
+│   ├── blocks/                    # per-block functional netlists  (Sec 4)
+│   ├── dff_timing/                # setup/hold/clk-to-Q            (Sec 5)
+│   ├── integrated/                # full adder netlist             (Sec 8)
+│   └── delay_power/               # per-output delay + power       (Sec 4,10)
 ├── layout/
 │   ├── tech/                      # SCN6M_DEEP.09 tech file
 │   ├── devices/                   # sized NMOS/PMOS device cells
 │   ├── blocks/                    # per-block MAGIC layouts (.mag) + extracted (.spice)
 │   └── full_chip/                 # complete layout + extracted netlist
 ├── post_layout_sim/
-│   ├── block_wise/                # extracted block simulations    (Task 6)
-│   └── full_chip/                 # extracted full-chip simulation (Task 9)
+│   ├── block_wise/                # extracted block simulations    (Sec 7)
+│   └── full_chip/                 # extracted full-chip simulation (Sec 10)
 ├── verilog/
 │   ├── rtl/                       # structural Verilog
 │   ├── tb/                        # testbench
@@ -201,8 +210,8 @@ To re-run a SPICE deck, MAGIC layout, or the RTL, see the notes at the top of ea
 
 ## References
 
-1. Md. Ashik Zafar Dipto, Elias Ahammad Sojib, Afran Sorwar, Md. Mostak Tahmid Rangon, *"Performance Improvement in Conventional 4-bit Static CMOS Carry Look-Ahead Adder by Modifying Carry-Generate and Propagate Terms,"* 11th ICCCNT, IIT Kharagpur, July 2020. → [`docs/references/CLA_static_CMOS_ICCCNT_2020.pdf`](docs/references/CLA_static_CMOS_ICCCNT_2020.pdf)
-2. Behzad Razavi, *"A Circuit for All Seasons — The TSPC Logic,"* IEEE Solid-State Circuits Magazine, Fall 2016. → [`docs/references/Razavi_TSPC_Logic_IEEE_SSCM_2016.pdf`](docs/references/Razavi_TSPC_Logic_IEEE_SSCM_2016.pdf)
+1. Md. Ashik Zafar Dipto, Elias Ahammad Sojib, Afran Sorwar, Md. Mostak Tahmid Rangon, *"Performance Improvement in Conventional 4-bit Static CMOS Carry Look-Ahead Adder by Modifying Carry-Generate and Propagate Terms,"* 11th ICCCNT, IIT Kharagpur, July 2020.
+2. Behzad Razavi, *"A Circuit for All Seasons — The TSPC Logic,"* IEEE Solid-State Circuits Magazine, Fall 2016.
 3. N. Weste and D. Harris, *CMOS VLSI Design*, 4th ed., Addison-Wesley.
 
 ---
